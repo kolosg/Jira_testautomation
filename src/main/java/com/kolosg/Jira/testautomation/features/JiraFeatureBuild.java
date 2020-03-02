@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
 
 //action build for features
 public abstract class JiraFeatureBuild {
@@ -20,6 +22,10 @@ public abstract class JiraFeatureBuild {
 
     protected void waitUntilElementClickable(WebElement webElement) {
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    }
+
+    protected void waitForSEC(int seconds) {
+        driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
     }
 
     protected void waitUntilElementLoaded(WebElement webElement) {

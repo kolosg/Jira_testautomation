@@ -33,4 +33,14 @@ public class Login extends JiraFeatureBuild{
         loginPasswordField.sendKeys(password);
         clickOnElement(loginButton);
     }
+
+    protected boolean validateLogin() {
+        waitForSEC(Integer.parseInt(Util.getEnvironmentVariable("waiting_seconds")));
+        return profilePicture.isDisplayed();
+    }
+
+    protected void happyPassLogin() {
+        loginAttempt(USERNAME, PASSWORD);
+        waitUntilElementLoaded(profilePicture);
+    }
 }
