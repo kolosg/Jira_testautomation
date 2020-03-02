@@ -22,7 +22,7 @@ public class Login extends JiraFeatureBuild{
     @FindBy(xpath = "//*[@id='header-details-user-fullname']/span/span/img")
     WebElement profilePicture;
 
-    protected Login(WebDriver driver) {
+    public Login(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
