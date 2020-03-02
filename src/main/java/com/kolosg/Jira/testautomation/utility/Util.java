@@ -41,8 +41,8 @@ public class Util {
     /*
     //use this method in need to define the driver properties (driverpath + driverproperty)
     public static void setDriverPath() {
-        String driverProperty = getEnvironmentVariable("DRIVER_PROPERTY");
-        String driverPath = getEnvironmentVariable("DRIVER_PATH");
+        String driverProperty = getEnvironmentVariable("driver_property");
+        String driverPath = getEnvironmentVariable("driver_path");
         System.setProperty(driverProperty, driverPath);
     }
     */
