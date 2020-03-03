@@ -27,7 +27,7 @@ public class Login extends JiraFeatureBuild{
         PageFactory.initElements(driver, this);
     }
 
-    protected void loginAttempt(String username, String password) {
+    protected void loginAttempt(String username, String password)   {
         waitUntilElementLoaded(loginUsernameField);
         loginUsernameField.sendKeys(username);
         loginPasswordField.sendKeys(password);

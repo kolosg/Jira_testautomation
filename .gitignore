@@ -59,3 +59,8 @@ nb-configuration.xml
 ## OS X
 ##########################
 .DS_Store
+
+##########################
+## FILES
+##########################
+Test_Automation_Jira_Requirements.xlsx
