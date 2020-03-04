@@ -11,35 +11,36 @@ public class Login extends JiraFeatureBuild{
     private final String PASSWORD = Util.getEnvironmentVariable("jira_password");
 
     @FindBy(id = "login-form-username")
-    WebElement loginUsernameField;
+    private WebElement loginUsernameField;
 
     @FindBy(id = "login-form-password")
-    WebElement loginPasswordField;
+    private WebElement loginPasswordField;
 
     @FindBy(id = "login")
-    WebElement loginButton;
+    private WebElement loginButton;
 
     @FindBy(xpath = "//*[@id='header-details-user-fullname']/span/span/img")
-    WebElement profilePicture;
+    private WebElement profilePicture;
 
     public Login(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+        driver.get(BASE_URL);
     }
 
-    protected void loginAttempt(String username, String password)   {
+    public void loginAttempt(String username, String password) {
         waitUntilElementLoaded(loginUsernameField);
         loginUsernameField.sendKeys(username);
         loginPasswordField.sendKeys(password);
         clickOnElement(loginButton);
     }
 
-    protected boolean validateLogin() {
+    public boolean validateLogin() {
         waitForSEC(Integer.parseInt(Util.getEnvironmentVariable("waiting_seconds")));
         return profilePicture.isDisplayed();
     }
 
-    protected void happyPassLogin() {
+    public void happyPassLogin() {
         loginAttempt(USERNAME, PASSWORD);
         waitUntilElementLoaded(profilePicture);
     }

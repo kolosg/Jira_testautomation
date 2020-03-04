@@ -1,0 +1,5 @@
+username, password, expectedResult
+asdasd, asdasd, false
+ , , false
+Util.getEnvironmentVariable('jira_username'), randomPassword12, false
+randomUserName12, Util.getEnvironmentVariable('jira_password'), false
