@@ -39,8 +39,4 @@ public class JiraLoginTest {
         boolean loginResult = login.validateLogin();
         Assertions.assertEquals(expectedResult, loginResult);
     }
-
-
-
-
-}
+    }

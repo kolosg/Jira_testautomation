@@ -37,6 +37,9 @@ public class Util {
         return variable;
     }
 
+    public static void navigateToURL(WebDriver driver, String URL) {
+        driver.get(URL);
+    }
 
     /*
     //use this method in need to define the driver properties (driverpath + driverproperty)

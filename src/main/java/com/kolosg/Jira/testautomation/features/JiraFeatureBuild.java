@@ -25,7 +25,7 @@ public abstract class JiraFeatureBuild {
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
-    protected void waitForSEC(int seconds) {
+    public void waitForSEC(int seconds) {
         driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
     }
 

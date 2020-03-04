@@ -29,7 +29,6 @@ public class Login extends JiraFeatureBuild{
     }
 
     public void loginAttempt(String username, String password) {
-        driver.get(Util.BASE_URL + "/secure/Dashboard.jspa");
         waitUntilElementLoaded(loginUsernameField);
         loginUsernameField.sendKeys(username);
         loginPasswordField.sendKeys(password);
@@ -41,8 +40,11 @@ public class Login extends JiraFeatureBuild{
         return profilePicture.isDisplayed();
     }
 
-    public void happyPassLogin() {
-        loginAttempt(USERNAME, PASSWORD);
-        waitUntilElementLoaded(profilePicture);
+    public void loginValidation() {
+        Util.navigateToURL(driver, validationURL);
+    }
+
+    public String getValidationURL() {
+        return validationURL;
     }
 }
