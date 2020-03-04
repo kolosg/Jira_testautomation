@@ -29,6 +29,7 @@ public class Login extends JiraFeatureBuild{
     }
 
     public void loginAttempt(String username, String password) {
+        driver.get(Util.BASE_URL + "/secure/Dashboard.jspa");
         waitUntilElementLoaded(loginUsernameField);
         loginUsernameField.sendKeys(username);
         loginPasswordField.sendKeys(password);
