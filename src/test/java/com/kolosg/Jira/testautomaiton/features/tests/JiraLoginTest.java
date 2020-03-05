@@ -27,9 +27,11 @@ public class JiraLoginTest {
 
     @Test
     void happyPassLoginTest() {
-        login.happyPassLogin();
-        boolean loginResult = login.validateLogin();
-        Assertions.assertTrue(loginResult);
+        login.loginAttempt(Util.USERNAME, Util.PASSWORD);
+        login.waitForSEC(Integer.parseInt(Util.getEnvironmentVariable("waiting_seconds")));
+        login.loginValidation();
+        login.waitForSEC(Integer.parseInt(Util.getEnvironmentVariable("waiting_seconds")));
+        Assertions.assertEquals(login.getValidationURL(), login.getDriver().getCurrentUrl());
     }
 
     @Test
