@@ -44,7 +44,15 @@ public class Login extends JiraFeatureBuild{
         Util.navigateToURL(driver, validationURL);
     }
 
-    public String getValidationURL() {
-        return validationURL;
+    public void loginValidation() {
+        Util.navigateToURL(driver, validationURL);
     }
+
+    /*
+    //another way to validate
+    public int getNumberOfGadgetsOfPageForValidation() {
+        waitForSEC(Integer.parseInt(Util.getEnvironmentVariable("waiting_seconds")));
+        return driver.findElements(By.id("gadget")).size();
+    }*/
+
 }
