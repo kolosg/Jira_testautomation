@@ -1,6 +1,7 @@
 package com.kolosg.Jira.testautomation.features;
 
 import com.kolosg.Jira.testautomation.utility.Util;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,13 +24,9 @@ public class JiraLogin extends JiraFeatureBuild{
     @FindBy(xpath = "//*[@id='usernameerror']/p")
     private WebElement errorMessage;
 
-    @FindBy(xpath = "//*[@id='header-details-user-fullname']/span/span/img")
-    private WebElement profilePicture;
-
-    public Login(WebDriver driver) {
+    public JiraLogin(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
-        driver.get(BASE_URL);
     }
 
     public void loginAttempt(String username, String password) {
@@ -41,9 +38,12 @@ public class JiraLogin extends JiraFeatureBuild{
 
     }
 
-    public boolean validateLogin() {
-        waitForSEC(Integer.parseInt(Util.getEnvironmentVariable("waiting_seconds")));
-        return profilePicture.isDisplayed();
+    public void getCAPTCHA() {
+        waitUntilElementLoaded(loginUsernameField);
+        loginUsernameField.sendKeys(Util.USERNAME);
+        loginPasswordField.sendKeys("invalidPassword");
+        clickOnElement(loginButton);
+        waitUntilElementLoaded(errorMessage);
     }
 
     public String getErrorMessage() {
