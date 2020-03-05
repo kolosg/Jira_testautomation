@@ -1,5 +1,8 @@
 package com.kolosg.Jira.testautomation.utility;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -37,8 +40,12 @@ public class Util {
         return variable;
     }
 
-    public static void navigateToURL(WebDriver driver, String URL) {
+    public static void navigateToURL(WebDriver driver,  String URL) {
         driver.get(URL);
+    }
+
+    public static void openNewTab(WebDriver driver) {
+        ((JavascriptExecutor)driver).executeScript("window.open()");
     }
 
     /*

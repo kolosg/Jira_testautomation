@@ -6,9 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Login extends JiraFeatureBuild{
-    private final String USERNAME = Util.getEnvironmentVariable("jira_username");
-    private final String PASSWORD = Util.getEnvironmentVariable("jira_password");
+
+public class JiraLogin extends JiraFeatureBuild{
+
+    private final String validationURL = Util.BASE_URL + "/secure/Viewprofile.jspa";
 
     @FindBy(id = "login-form-username")
     private WebElement loginUsernameField;
@@ -45,8 +46,12 @@ public class Login extends JiraFeatureBuild{
         return profilePicture.isDisplayed();
     }
 
-    public void loginValidation() {
-        Util.navigateToURL(driver, validationURL);
+    public String getErrorMessage() {
+        return errorMessage.getText();
+    }
+
+    public String getValidationURL() {
+        return validationURL;
     }
 
     public void loginValidation() {
