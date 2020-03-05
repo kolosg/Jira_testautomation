@@ -31,7 +31,7 @@ public class JiraProjectVersions extends JiraFeatureBuild{
 
 
 
-    protected JiraProjectVersions(WebDriver driver) {
+    public JiraProjectVersions(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
@@ -45,6 +45,7 @@ public class JiraProjectVersions extends JiraFeatureBuild{
     }
 
     public List<String> getVersionNames() {
+        collectVersions();
         List<String> versionNames = new ArrayList<>();
         for (WebElement version: versionNameElements){
             versionNames.add(version.getText());
@@ -53,11 +54,21 @@ public class JiraProjectVersions extends JiraFeatureBuild{
     }
 
     public List<String> getVersionDescriptions() {
+        collectDescriptions();
         List<String> versionDescriptions = new ArrayList<>();
         for (WebElement description: versionDescriptionElements){
             versionDescriptions.add(description.getText());
         }
         return versionDescriptions;
     }
+
+    public void addNewVersion(String newVersionName, String newVersionDescription) {
+        waitUntilElementLoaded(nameInputField);
+        nameInputField.sendKeys(newVersionName);
+        descriptionInputField.sendKeys(newVersionDescription);
+        clickOnElement(addVersionButton);
+    }
+
+
 
 }

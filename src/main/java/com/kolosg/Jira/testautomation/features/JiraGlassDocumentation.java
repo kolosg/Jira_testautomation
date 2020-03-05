@@ -21,26 +21,48 @@ public class JiraGlassDocumentation extends JiraFeatureBuild {
     private WebElement glassVersionFilterButton;
 
     @FindBy(className = "item-state-ready")
-    private WebElement versionName;
+    private WebElement glassVersionName;
 
-    private List<WebElement> versionNameElements;
+   @FindBy(className = "versions-table__description")
+    private WebElement glassVersionDescriptionElement;
+
+    private List<WebElement> glassVersionNameElements;
+    private List<WebElement> glassVersionDescriptionElements;
 
 
-    protected JiraGlassDocumentation(WebDriver driver) {
+    public JiraGlassDocumentation(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    public void collectVersions() {
-        versionNameElements = driver.findElements((By) versionName);
+    private void collectGlassVersions() {
+        glassVersionNameElements = driver.findElements((By) glassVersionName);
+    }
+
+    public void collectGlassDescriptions() {
+        glassVersionDescriptionElements = driver.findElements((By) glassVersionDescriptionElement);
     }
 
     public List<String> getVersionNames() {
+        collectGlassVersions();
         List<String> versionNames = new ArrayList<>();
-        for (WebElement version: versionNameElements){
+        for (WebElement version: glassVersionNameElements){
             versionNames.add(version.getText());
         }
         return versionNames;
+    }
+
+    public List<String> getGlassVersionDescriptions() {
+        collectGlassDescriptions();
+        List<String> versionDescriptions = new ArrayList<>();
+        for (WebElement description: glassVersionDescriptionElements){
+            versionDescriptions.add(description.getText());
+        }
+        return versionDescriptions;
+    }
+
+    public void clickOnVersions() {
+        clickOnElement(glassVersionFilterButton);
     }
 
 }
