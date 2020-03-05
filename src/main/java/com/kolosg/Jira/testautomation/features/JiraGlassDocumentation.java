@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JiraGlassDocumentation extends JiraFeatureBuild {
@@ -22,18 +23,24 @@ public class JiraGlassDocumentation extends JiraFeatureBuild {
     @FindBy(className = "item-state-ready")
     private WebElement versionName;
 
-    private List<WebElement> versionNames;
+    private List<WebElement> versionNameElements;
+
 
     protected JiraGlassDocumentation(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    public void getVersions() {
-        versionNames = driver.findElements((By) versionName);
+    public void collectVersions() {
+        versionNameElements = driver.findElements((By) versionName);
     }
 
-    public List<WebElement> getVersionNames() {
+    public List<String> getVersionNames() {
+        List<String> versionNames = new ArrayList<>();
+        for (WebElement version: versionNameElements){
+            versionNames.add(version.getText());
+        }
         return versionNames;
     }
+
 }
