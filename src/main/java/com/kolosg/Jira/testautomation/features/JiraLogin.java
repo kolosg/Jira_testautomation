@@ -19,6 +19,9 @@ public class Login extends JiraFeatureBuild{
     @FindBy(id = "login")
     private WebElement loginButton;
 
+    @FindBy(xpath = "//*[@id='usernameerror']/p")
+    private WebElement errorMessage;
+
     @FindBy(xpath = "//*[@id='header-details-user-fullname']/span/span/img")
     private WebElement profilePicture;
 
