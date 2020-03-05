@@ -24,6 +24,7 @@ public class Login extends JiraFeatureBuild{
 
     @FindBy(xpath = "//*[@id='header-details-user-fullname']/span/span/img")
     private WebElement profilePicture;
+    private String validationURL;
 
     public Login(WebDriver driver) {
         super(driver);
@@ -45,6 +46,7 @@ public class Login extends JiraFeatureBuild{
         return profilePicture.isDisplayed();
     }
 
+    /*
     public void loginValidation() {
         Util.navigateToURL(driver, validationURL);
     }
@@ -52,6 +54,7 @@ public class Login extends JiraFeatureBuild{
     public void loginValidation() {
         Util.navigateToURL(driver, validationURL);
     }
+    */
 
     /*
     //another way to validate

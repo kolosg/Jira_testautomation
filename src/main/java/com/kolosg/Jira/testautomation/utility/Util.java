@@ -8,6 +8,7 @@ import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 public class Util {
+    static final String BASE_URL = getEnvironmentVariable("base_url");
 
     //method simply creates the given webdriver
     public static WebDriver createDriver(String driverType) {
@@ -39,6 +40,14 @@ public class Util {
 
     public static void navigateToURL(WebDriver driver, String URL) {
         driver.get(URL);
+    }
+
+    public static void navigateTo(WebDriver driver, String urlPart) {
+        driver.get(BASE_URL + urlPart);
+    }
+
+    public static void navigateToBase(WebDriver driver) {
+        driver.get(BASE_URL);
     }
 
     /*
