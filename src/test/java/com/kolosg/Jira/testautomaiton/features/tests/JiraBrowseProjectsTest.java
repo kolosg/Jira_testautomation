@@ -21,7 +21,7 @@ public class JiraBrowseProjectsTest {
         jiraBrowseProject = new JiraBrowseProject(login.getDriver());
         Util.navigateToURL(login.getDriver(), BASE_URL + "/secure/Dashboard.jspa");
         login.loginAttempt(Util.USERNAME, Util.PASSWORD);
-        Util.waitForSEC(login.getDriver(), 100);
+        login.waitForSuccessfulLogin();
     }
 
     @AfterEach
@@ -31,8 +31,6 @@ public class JiraBrowseProjectsTest {
 
     @Test
     void validateProjectsExist() {
-        Util.waitForSEC(login.getDriver(), 5);
-        Util.openNewTab(login.getDriver());
         Util.navigateToURL(login.getDriver(), BASE_URL + "/secure/BrowseProjects.jspa");
         Assertions.assertTrue(jiraBrowseProject.validateProjectsExist1());
     }

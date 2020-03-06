@@ -24,19 +24,22 @@ public class JiraLogin extends JiraFeatureBuild{
     @FindBy(xpath = "//*[@id='usernameerror']/p")
     private WebElement errorMessage;
 
+    @FindBy(xpath = "//*[@id=\"header-details-user-fullname\"]//img")
+    WebElement userProfilePicture;
+
     public JiraLogin(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-
+    public void waitForSuccessfulLogin() {
+        waitUntilElementLoaded(userProfilePicture);
+    }
     public void loginAttempt(String username, String password) {
         waitUntilElementLoaded(loginUsernameField);
         loginUsernameField.sendKeys(username);
         loginPasswordField.sendKeys(password);
         clickOnElement(loginButton);
-        Util.waitForSEC(driver, 10);
-
     }
 
     public void getCAPTCHA() {
