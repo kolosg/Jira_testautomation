@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class JiraLogoutTest extends BaseTest{
-    private Logout logout = new Logout(driver, wait);
+//public class JiraLogoutTest extends BaseTest{
+    //private Logout logout = new Logout(driver, wait);
 
-
+/*
     @Test
     void logoutHappyPassTest(){
         Util.navigateToBase(driver);
@@ -20,3 +20,4 @@ public class JiraLogoutTest extends BaseTest{
         Assertions.assertTrue(amILoggedOut);
     }
 }
+*/

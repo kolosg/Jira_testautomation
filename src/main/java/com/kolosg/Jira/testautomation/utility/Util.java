@@ -1,14 +1,14 @@
 package com.kolosg.Jira.testautomation.utility;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.safari.SafariDriver;
+
+import java.util.concurrent.TimeUnit;
 
 public class Util {
 
@@ -41,11 +41,17 @@ public class Util {
     }
 
     public static void navigateToURL(WebDriver driver,  String URL) {
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get(URL);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
     }
 
     public static void openNewTab(WebDriver driver) {
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         ((JavascriptExecutor)driver).executeScript("window.open()");
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
     }
 
     /*

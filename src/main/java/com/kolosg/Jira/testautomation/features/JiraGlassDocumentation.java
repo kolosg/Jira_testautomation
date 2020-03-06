@@ -36,11 +36,11 @@ public class JiraGlassDocumentation extends JiraFeatureBuild {
     }
 
     private void collectGlassVersions() {
-        glassVersionNameElements = driver.findElements((By) glassVersionName);
+        glassVersionNameElements = driver.findElements(By.className("item-state-ready"));
     }
 
     public void collectGlassDescriptions() {
-        glassVersionDescriptionElements = driver.findElements((By) glassVersionDescriptionElement);
+        glassVersionDescriptionElements = driver.findElements(By.className("versions-table__description"));
     }
 
     public List<String> getVersionNames() {

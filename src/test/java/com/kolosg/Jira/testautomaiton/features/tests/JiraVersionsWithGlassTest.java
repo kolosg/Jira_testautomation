@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.kolosg.Jira.testautomation.utility.Util.BASE_URL;
@@ -24,6 +25,8 @@ public class JiraVersionsWithGlassTest {
     @BeforeEach
     void setUp() {
         login = new JiraLogin(Util.createDriver("Chrome"));
+        jiraGlassDocumentation = new JiraGlassDocumentation(login.getDriver());
+        jiraProjectVersions = new JiraProjectVersions(login.getDriver());
         Util.navigateToURL(login.getDriver(), BASE_URL + "/secure/Dashboard.jspa");
         login.loginAttempt(Util.USERNAME, Util.PASSWORD);
     }
@@ -41,17 +44,16 @@ public class JiraVersionsWithGlassTest {
         List<String> glassVersionDescriptions;
         Util.openNewTab(login.getDriver());
         ArrayList<String> tabs = new ArrayList<String>(login.getDriver().getWindowHandles());
-        jiraGlassDocumentation = new JiraGlassDocumentation(login.getDriver());
-        jiraProjectVersions = new JiraProjectVersions(login.getDriver());
-        Util.navigateToURL(jiraProjectVersions.getDriver(), BASE_URL + "/plugins/servlet/project-config/PP4/versions");
+        login.getDriver().switchTo().window(tabs.get(0));
+        Util.navigateToURL(login.getDriver(), BASE_URL + "/plugins/servlet/project-config/PP4/versions");
         jiraProjectVersions.addNewVersion("9999ProjectVersion", "test description");
         versionNames = jiraProjectVersions.getVersionNames();
         versionDescriptions = jiraProjectVersions.getVersionDescriptions();
-        login.getDriver().switchTo().window(tabs.get(0));
+        login.getDriver().switchTo().window(tabs.get(1));
         Util.navigateToURL(jiraProjectVersions.getDriver(), BASE_URL + "/projects/PP4?selectedItem=com.codecanvas.glass:glass");
         jiraGlassDocumentation.clickOnVersions();
         glassVersionNames = jiraGlassDocumentation.getVersionNames();
         glassVersionDescriptions = jiraGlassDocumentation.getGlassVersionDescriptions();
-        Assertions.assertEquals(versionNames, glassVersionNames);
+        Assertions.assertEquals(versionNames.removeAll(Arrays.asList(null, "")), glassVersionNames.removeAll(Arrays.asList(null, "")));
     }
 }

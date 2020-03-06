@@ -37,11 +37,11 @@ public class JiraProjectVersions extends JiraFeatureBuild{
     }
 
     public void collectVersions() {
-        versionNameElements = driver.findElements((By) versionName);
+        versionNameElements = driver.findElements(By.className("project-config-version-name"));
     }
 
     public void collectDescriptions() {
-        versionDescriptionElements = driver.findElements((By) versionDescription);
+        versionDescriptionElements =  driver.findElements(By.className("aui-restfultable-editable"));
     }
 
     public List<String> getVersionNames() {
