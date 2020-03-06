@@ -35,7 +35,7 @@ public class JiraLogin extends JiraFeatureBuild{
         loginUsernameField.sendKeys(username);
         loginPasswordField.sendKeys(password);
         clickOnElement(loginButton);
-        waitForSEC(Integer.parseInt(Util.getEnvironmentVariable("waiting_seconds")));
+        Util.waitForSEC(driver, 10);
 
     }
 

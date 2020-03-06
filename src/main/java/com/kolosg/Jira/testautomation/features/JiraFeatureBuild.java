@@ -18,7 +18,7 @@ public abstract class JiraFeatureBuild {
 
     protected JiraFeatureBuild(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Integer.parseInt(Util.getEnvironmentVariable("timeout_limit")));
+        this.wait = new WebDriverWait(driver, 30);
         driver.manage().window().maximize();
     }
 
