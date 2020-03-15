@@ -22,9 +22,6 @@ public class JiraGlassDocumentation extends JiraFeatureBuild {
     @FindBy(xpath = "//*[@id='versions-table']/tbody[2]/tr[@class='item-state-ready']")
     private List<WebElement> glassVersionNames;
 
-   @FindBy(className = "versions-table__description")
-    private List<WebElement> glassVersionDescriptionElements;
-
 
     public JiraGlassDocumentation(WebDriver driver) {
         super(driver);
@@ -36,17 +33,7 @@ public class JiraGlassDocumentation extends JiraFeatureBuild {
         for (WebElement version: glassVersionNames){
             versionNames.add(version.getText());
         }
-        System.out.println(versionNames);
         return versionNames;
-    }
-
-    public List<String> getGlassVersionDescriptions() {
-        List<String> versionDescriptions = new ArrayList<>();
-        waitUntilElementLoaded(glassVersionDescriptionElements.get(0));
-        for (WebElement description: glassVersionDescriptionElements){
-            versionDescriptions.add(description.getText());
-        }
-        return versionDescriptions;
     }
 
     public void clickOnVersions() {

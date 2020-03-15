@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -37,12 +36,14 @@ public class JiraVersionsWithGlassTest {
     @Test
     void validateNewProjectVersionOnGlass(){
         List<String> versionNames;
+        String testVersionName = "Random version: " + Util.generateRandomNumberInRange(100);
         Util.navigateToURL(login.getDriver(), Util.BASE_URL + "/plugins/servlet/project-config/PP4/versions");
-        jiraProjectVersions.addNewVersion("Random version: " + Util.generateRandomNumberInRange(100), "test description");
+        jiraProjectVersions.addNewVersion(testVersionName, "test description");
         versionNames = jiraProjectVersions.getVersionNames();
         Util.navigateToURL(jiraProjectVersions.getDriver(), Util.BASE_URL + "/projects/PP4?selectedItem=com.codecanvas.glass:glass");
         jiraGlassDocumentation.clickOnVersions();
         Assertions.assertEquals(versionNames.size(), jiraGlassDocumentation.getGlassVersionNames().size());
-        //jiraProjectVersions.deleteVersion();
+        Util.navigateToURL(login.getDriver(), Util.BASE_URL + "/plugins/servlet/project-config/PP4/versions");
+        jiraProjectVersions.deleteVersion(testVersionName);
     }
 }

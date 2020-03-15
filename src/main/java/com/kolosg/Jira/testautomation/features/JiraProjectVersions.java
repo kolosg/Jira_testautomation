@@ -3,6 +3,7 @@ package com.kolosg.Jira.testautomation.features;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -20,7 +21,7 @@ public class JiraProjectVersions extends JiraFeatureBuild{
     @FindBy(xpath = "//*[@id='project-config-versions-table']/tbody[1]/tr/td[4]/input")
     private WebElement descriptionInputField;
 
-    @FindBy(xpath = "//*[@id=\"AJS_DROPDOWN_LISTITEM__149\"]/a")
+    @FindBy(partialLinkText = "Delete")
     private WebElement deleteVersionButton;
 
     @FindBy(xpath = "//*[@id=\"submit\"]")
@@ -29,14 +30,10 @@ public class JiraProjectVersions extends JiraFeatureBuild{
     @FindBy(className = "project-config-version-name")
     private List<WebElement> versionNames;
 
-   @FindBy(className = "aui-restfultable-editable")
-    private List<WebElement> versionDescriptions;
-
     public JiraProjectVersions(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-
 
     public List<String> getVersionNames() {
         List<String> versionNamesList = new ArrayList<>();
@@ -44,17 +41,7 @@ public class JiraProjectVersions extends JiraFeatureBuild{
         for (WebElement version : versionNames){
             versionNamesList.add(version.getText());
         }
-        System.out.println(versionNamesList);
         return versionNamesList;
-    }
-
-    public List<String> getVersionDescriptions() {
-        List<String> versionDescriptionsList = new ArrayList<>();
-        waitUntilElementLoaded(versionDescriptions.get(0));
-        for (WebElement description: versionDescriptions){
-            versionDescriptionsList.add(description.getText());
-        }
-        return versionDescriptionsList;
     }
 
     public void addNewVersion(String newVersionName, String newVersionDescription) {
@@ -63,10 +50,14 @@ public class JiraProjectVersions extends JiraFeatureBuild{
         clickOnElement(addVersionButton);
     }
 
-    public void deleteVersion() {
+    public void deleteVersion(String versionName) {
+        Actions actions = new Actions(driver);
+        String xpath = "//tr[@data-name = \"" + versionName + "\"]/td[@class = 'aui-restfultable-operations']";
+        WebElement element = driver.findElement(By.xpath(xpath));
+        actions.moveToElement(element).moveToElement(element).build().perform();
+        clickOnElement(driver.findElement(By.xpath(xpath + "/a")));
         clickOnElement(deleteVersionButton);
         clickOnElement(confirmDeleteButton);
     }
-
 
 }
