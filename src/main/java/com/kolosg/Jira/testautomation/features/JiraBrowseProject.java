@@ -1,6 +1,5 @@
 package com.kolosg.Jira.testautomation.features;
 
-import com.kolosg.Jira.testautomation.utility.Util;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,9 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 public class JiraBrowseProject extends JiraFeatureBuild{
-
-    @FindBy(className = "aui-page-header")
-    WebElement pageHeader;
 
     @FindBy(className = "cell-type-name")
     WebElement projectNames;
@@ -41,10 +37,11 @@ public class JiraBrowseProject extends JiraFeatureBuild{
     }
 
     public boolean validateProjectsExist1() {
-        waitUntilElementLoaded(pageHeader);
         //collectProjects();
         //System.out.println(projects);
-        return jetiProject.isDisplayed() && coalaProject.isDisplayed() && toucanProject.isDisplayed();
+        return waitUntilElementLoaded(jetiProject).isDisplayed() &&
+               waitUntilElementLoaded(coalaProject).isDisplayed() &&
+               waitUntilElementLoaded(toucanProject).isDisplayed();
     }
 
     public void clickOnProjectName(WebElement projectName) {

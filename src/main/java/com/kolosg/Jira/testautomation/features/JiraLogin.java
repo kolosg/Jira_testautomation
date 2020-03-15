@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.FluentWait;
 
 
 public class JiraLogin extends JiraFeatureBuild{
@@ -35,6 +36,7 @@ public class JiraLogin extends JiraFeatureBuild{
     public void waitForSuccessfulLogin() {
         waitUntilElementLoaded(userProfilePicture);
     }
+
     public void loginAttempt(String username, String password) {
         waitUntilElementLoaded(loginUsernameField);
         loginUsernameField.sendKeys(username);
@@ -43,10 +45,7 @@ public class JiraLogin extends JiraFeatureBuild{
     }
 
     public void getCAPTCHA() {
-        waitUntilElementLoaded(loginUsernameField);
-        loginUsernameField.sendKeys(Util.USERNAME);
-        loginPasswordField.sendKeys("invalidPassword");
-        clickOnElement(loginButton);
+        loginAttempt(Util.USERNAME, "invalidPassword");
         waitUntilElementLoaded(errorMessage);
     }
 

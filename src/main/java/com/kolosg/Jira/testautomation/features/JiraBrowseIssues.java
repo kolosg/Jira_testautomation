@@ -8,8 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-import static com.kolosg.Jira.testautomation.utility.Util.BASE_URL;
-
 public class JiraBrowseIssues extends JiraFeatureBuild{
     @FindBy(id = "search-title")
     WebElement headerIssuesField;
@@ -25,8 +23,7 @@ public class JiraBrowseIssues extends JiraFeatureBuild{
     }
 
     public void navigateToFilteredSearchURL(){
-        Util.navigateToURL(driver, BASE_URL + FILTERED_SEARCH_URL);
-        waitForSEC(10);
+        Util.navigateToURL(driver, Util.BASE_URL + FILTERED_SEARCH_URL);
     }
 
     public boolean validateExpectedNumberOfIssuesOnProject(String projectName, int expectedMinimumIssues) {

@@ -1,6 +1,5 @@
 package com.kolosg.Jira.testautomation.features;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,13 +19,10 @@ public class JiraGlassDocumentation extends JiraFeatureBuild {
     @FindBy(xpath = "//*[@id='aui-uid-2']")
     private WebElement glassVersionFilterButton;
 
-    @FindBy(className = "item-state-ready")
-    private WebElement glassVersionName;
+    @FindBy(xpath = "//*[@id='versions-table']/tbody[2]/tr[@class='item-state-ready']")
+    private List<WebElement> glassVersionNames;
 
    @FindBy(className = "versions-table__description")
-    private WebElement glassVersionDescriptionElement;
-
-    private List<WebElement> glassVersionNameElements;
     private List<WebElement> glassVersionDescriptionElements;
 
 
@@ -35,26 +31,18 @@ public class JiraGlassDocumentation extends JiraFeatureBuild {
         PageFactory.initElements(driver, this);
     }
 
-    private void collectGlassVersions() {
-        glassVersionNameElements = driver.findElements(By.className("item-state-ready"));
-    }
-
-    public void collectGlassDescriptions() {
-        glassVersionDescriptionElements = driver.findElements(By.className("versions-table__description"));
-    }
-
-    public List<String> getVersionNames() {
-        collectGlassVersions();
+    public List<String> getGlassVersionNames() {
         List<String> versionNames = new ArrayList<>();
-        for (WebElement version: glassVersionNameElements){
+        for (WebElement version: glassVersionNames){
             versionNames.add(version.getText());
         }
+        System.out.println(versionNames);
         return versionNames;
     }
 
     public List<String> getGlassVersionDescriptions() {
-        collectGlassDescriptions();
         List<String> versionDescriptions = new ArrayList<>();
+        waitUntilElementLoaded(glassVersionDescriptionElements.get(0));
         for (WebElement description: glassVersionDescriptionElements){
             versionDescriptions.add(description.getText());
         }

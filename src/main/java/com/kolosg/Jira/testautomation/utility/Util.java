@@ -8,9 +8,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
-import java.util.concurrent.TimeUnit;
+import java.util.Random;
 
 public class Util {
+
+    private static Random random = new Random();
 
     //method simply creates the given webdriver
     public static WebDriver createDriver(String driverType) {
@@ -41,20 +43,15 @@ public class Util {
     }
 
     public static void navigateToURL(WebDriver driver,  String URL) {
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(URL);
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-
     }
 
     public static void openNewTab(WebDriver driver) {
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         ((JavascriptExecutor)driver).executeScript("window.open()");
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
-    public static void waitForSEC(WebDriver driver, int seconds) {
-        driver.manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
+    public static int generateRandomNumberInRange(int range) {
+        return random.nextInt(range);
     }
 
     /*

@@ -8,8 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
 
-import java.util.ArrayList;
-
 import static com.kolosg.Jira.testautomation.utility.Util.BASE_URL;
 
 public class JiraLoginTest {
@@ -30,21 +28,17 @@ public class JiraLoginTest {
     @Test
     void happyPassLoginTest() {
         login.loginAttempt(Util.USERNAME, Util.PASSWORD);
-        login.waitForSEC(Integer.parseInt(Util.getEnvironmentVariable("waiting_seconds")));
         login.loginValidation();
-        login.waitForSEC(Integer.parseInt(Util.getEnvironmentVariable("waiting_seconds")));
         Assertions.assertEquals(login.getValidationURL(), login.getDriver().getCurrentUrl());
     }
 
     @Test
     void emptyCredentialsLoginTest() {
         login.loginAttempt("", "");
-        login.waitForSEC(Integer.parseInt(Util.getEnvironmentVariable("waiting_seconds")));
         login.loginValidation();
-        login.waitForSEC(Integer.parseInt(Util.getEnvironmentVariable("waiting_seconds")));
         Assertions.assertEquals(login.getValidationURL(), login.getDriver().getCurrentUrl());
     }
-
+/*
     @Test
     void CAPTCHAAppearanceTest() {
         Util.openNewTab(login.getDriver());
@@ -60,15 +54,13 @@ public class JiraLoginTest {
         String result = login.getErrorMessage();
         System.out.println(result);
         Assertions.assertTrue(result.contains("CAPTCHA"));
-    }
+    }*/
 
     @ParameterizedTest
     @CsvFileSource(resources = loginTestData, numLinesToSkip = 1)
     void failingLoginTest(String username, String password, boolean expectedResult) {
         login.loginAttempt(username, password);
-        login.waitForSEC(Integer.parseInt(Util.getEnvironmentVariable("waiting_seconds")));
         login.loginValidation();
-        login.waitForSEC(Integer.parseInt(Util.getEnvironmentVariable("waiting_seconds")));
         Assertions.assertEquals(login.getValidationURL(), login.getDriver().getCurrentUrl());
     }
 

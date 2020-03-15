@@ -9,8 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
-import static com.kolosg.Jira.testautomation.utility.Util.BASE_URL;
-
 public class JiraBrowseIssuesTest {
 
     private JiraLogin login;
@@ -23,7 +21,7 @@ public class JiraBrowseIssuesTest {
     void setUp() {
         login = new JiraLogin(Util.createDriver("Chrome"));
         jiraBrowseIssue = new JiraBrowseIssues(login.getDriver());
-        Util.navigateToURL(login.getDriver(), BASE_URL + "/secure/Dashboard.jspa");
+        Util.navigateToURL(login.getDriver(), Util.BASE_URL + "/secure/Dashboard.jspa");
         login.loginAttempt(Util.USERNAME, Util.PASSWORD);
         login.waitForSuccessfulLogin();
     }
@@ -37,8 +35,7 @@ public class JiraBrowseIssuesTest {
     @CsvFileSource(resources = browseIssuesTestData, numLinesToSkip = 1)
     void validateProjectNumberOfIssues(String project, int minimumNumberOfIssues) {
         jiraBrowseIssue.navigateToFilteredSearchURL();
-        Util.waitForSEC(login.getDriver(), 10);
-        boolean result =jiraBrowseIssue.validateExpectedNumberOfIssuesOnProject(project, minimumNumberOfIssues);
+        boolean result = jiraBrowseIssue.validateExpectedNumberOfIssuesOnProject(project, minimumNumberOfIssues);
         Assertions.assertTrue(result);
     }
 

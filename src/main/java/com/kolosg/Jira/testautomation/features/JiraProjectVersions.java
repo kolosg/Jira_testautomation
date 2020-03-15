@@ -20,55 +20,53 @@ public class JiraProjectVersions extends JiraFeatureBuild{
     @FindBy(xpath = "//*[@id='project-config-versions-table']/tbody[1]/tr/td[4]/input")
     private WebElement descriptionInputField;
 
+    @FindBy(xpath = "//*[@id=\"AJS_DROPDOWN_LISTITEM__149\"]/a")
+    private WebElement deleteVersionButton;
+
+    @FindBy(xpath = "//*[@id=\"submit\"]")
+    private WebElement confirmDeleteButton;
+
     @FindBy(className = "project-config-version-name")
-    private WebElement versionName;
+    private List<WebElement> versionNames;
 
    @FindBy(className = "aui-restfultable-editable")
-    private WebElement versionDescription;
-
-    private List<WebElement> versionNameElements;
-    private List<WebElement> versionDescriptionElements;
-
-
+    private List<WebElement> versionDescriptions;
 
     public JiraProjectVersions(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    public void collectVersions() {
-        versionNameElements = driver.findElements(By.className("project-config-version-name"));
-    }
-
-    public void collectDescriptions() {
-        versionDescriptionElements =  driver.findElements(By.className("aui-restfultable-editable"));
-    }
 
     public List<String> getVersionNames() {
-        collectVersions();
-        List<String> versionNames = new ArrayList<>();
-        for (WebElement version: versionNameElements){
-            versionNames.add(version.getText());
+        List<String> versionNamesList = new ArrayList<>();
+        waitUntilElementLoaded(versionNames.get(0));
+        for (WebElement version : versionNames){
+            versionNamesList.add(version.getText());
         }
-        return versionNames;
+        System.out.println(versionNamesList);
+        return versionNamesList;
     }
 
     public List<String> getVersionDescriptions() {
-        collectDescriptions();
-        List<String> versionDescriptions = new ArrayList<>();
-        for (WebElement description: versionDescriptionElements){
-            versionDescriptions.add(description.getText());
+        List<String> versionDescriptionsList = new ArrayList<>();
+        waitUntilElementLoaded(versionDescriptions.get(0));
+        for (WebElement description: versionDescriptions){
+            versionDescriptionsList.add(description.getText());
         }
-        return versionDescriptions;
+        return versionDescriptionsList;
     }
 
     public void addNewVersion(String newVersionName, String newVersionDescription) {
-        waitUntilElementLoaded(nameInputField);
-        nameInputField.sendKeys(newVersionName);
+        waitUntilElementLoaded(nameInputField).sendKeys(newVersionName);
         descriptionInputField.sendKeys(newVersionDescription);
         clickOnElement(addVersionButton);
     }
 
+    public void deleteVersion() {
+        clickOnElement(deleteVersionButton);
+        clickOnElement(confirmDeleteButton);
+    }
 
 
 }
