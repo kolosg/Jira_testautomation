@@ -22,7 +22,6 @@ public class JiraGlassDocumentation extends JiraFeatureBuild {
     @FindBy(xpath = "//*[@id='versions-table']/tbody[2]/tr[@class='item-state-ready']")
     private List<WebElement> glassVersionNames;
 
-
     public JiraGlassDocumentation(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
