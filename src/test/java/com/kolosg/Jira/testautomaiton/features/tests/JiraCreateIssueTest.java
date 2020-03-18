@@ -33,9 +33,9 @@ public class JiraCreateIssueTest{
     @ParameterizedTest
     @CsvFileSource(resources = createIssueData, numLinesToSkip = 1)
     void testSuccessfulIssueCreation(String projectName, String issueType) {
-        createIssue.createNewIssue(projectName, issueType, "test-summary");
+        createIssue.createNewIssue(projectName, issueType, "testSummaryVerificationMessage");
         assertTrue(createIssue.validateSuccessfulIssueCreation());
+        createIssue.clearUpTestIssues();
     }
-
 
 }
