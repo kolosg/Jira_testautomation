@@ -14,6 +14,10 @@ public class Util {
 
     private static Random random = new Random();
 
+    public final static String USERNAME = Util.getEnvironmentVariable("jira_username");
+    public final static String PASSWORD = Util.getEnvironmentVariable("jira_password");
+    public final static String BASE_URL = Util.getEnvironmentVariable("base_url");
+
     //method simply creates the given webdriver
     public static WebDriver createDriver(String driverType) {
         WebDriver driver;

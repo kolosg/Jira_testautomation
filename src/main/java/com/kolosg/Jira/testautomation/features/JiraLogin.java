@@ -36,6 +36,7 @@ public class JiraLogin extends JiraFeatureBuild{
     }
 
     public void loginAttempt(String username, String password) {
+        driver.get(Util.BASE_URL);
         waitUntilElementLoaded(loginUsernameField);
         loginUsernameField.sendKeys(username);
         loginPasswordField.sendKeys(password);

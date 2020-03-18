@@ -9,8 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Logout extends BasePOM{
-    private final String USERNAME = Util.getEnvironmentVariable("jira_username");
-    private final String PASSWORD = Util.getEnvironmentVariable("jira_password");
 
     @FindBy(id = "login-form-username")
     private WebElement loginUsernameField;
@@ -47,8 +45,8 @@ public class Logout extends BasePOM{
 
     public void login() {
         waitUntilElementLoaded(loginUsernameField);
-        loginUsernameField.sendKeys(USERNAME);
-        loginPasswordField.sendKeys(PASSWORD);
+        loginUsernameField.sendKeys(Util.USERNAME);
+        loginPasswordField.sendKeys(Util.PASSWORD);
         clickOnElement(loginButton);
     }
 }
