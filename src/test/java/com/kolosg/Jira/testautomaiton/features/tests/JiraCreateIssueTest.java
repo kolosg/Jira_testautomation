@@ -16,8 +16,6 @@ public class JiraCreateIssueTest{
     private JiraCreateIssue createIssue;
     private final String createIssueData = "/create_issue_combinations.csv";
 
-
-
     @BeforeEach
     void setUp() {
         login = new JiraLogin(Util.createDriver("Chrome"));
