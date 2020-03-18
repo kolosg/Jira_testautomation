@@ -24,7 +24,7 @@ public class JiraProjectVersions extends JiraFeatureBuild{
     @FindBy(partialLinkText = "Delete")
     private WebElement deleteVersionButton;
 
-    @FindBy(xpath = "//*[@id=\"submit\"]")
+    @FindBy(xpath = "//*[@id='submit']")
     private WebElement confirmDeleteButton;
 
     @FindBy(className = "project-config-version-name")
@@ -37,9 +37,8 @@ public class JiraProjectVersions extends JiraFeatureBuild{
 
     public List<String> getVersionNames() {
         List<String> versionNamesList = new ArrayList<>();
-        waitUntilElementLoaded(versionNames.get(0));
         for (WebElement version : versionNames){
-            versionNamesList.add(version.getText());
+            versionNamesList.add(waitUntilElementLoaded(version).getText());
         }
         return versionNamesList;
     }
