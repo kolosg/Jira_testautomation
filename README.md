@@ -8,7 +8,6 @@ https://jira.codecool.codecanvas.hu/ automated tests project
 - JIRA_USERNAME
 - JIRA_PASSWORD
 - BROWSER
-- BASE_URL
 - DRIVER_PROPERTY
 - DRIVER_PATH
 - TIMEOUT_LIMIT

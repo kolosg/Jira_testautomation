@@ -1,18 +1,11 @@
 package com.kolosg.Jira.testautomation.features;
 
-import com.kolosg.Jira.testautomation.utility.Util;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class JiraCreateIssue extends JiraFeatureBuild{
     @FindBy(id = "create_link")
@@ -33,10 +26,8 @@ public class JiraCreateIssue extends JiraFeatureBuild{
     @FindBy(xpath = "//a[@class='cancel']")
     WebElement cancelButton;
 
-    @FindBy(partialLinkText = "has been successfully created.")
+    @FindBy(xpath = "//*[@id='aui-flag-container']/div/div")
     WebElement conformationPopup;
-
-
 
     public JiraCreateIssue(WebDriver driver) {
         super(driver);
@@ -46,8 +37,7 @@ public class JiraCreateIssue extends JiraFeatureBuild{
     void selectFromDropdown(WebElement element, String select) {
         try {
             clickOnElement(element);
-            element.sendKeys(select);
-            element.sendKeys(Keys.ENTER);
+            element.sendKeys(select + Keys.ENTER);
         } catch (Exception e) {
             e.printStackTrace();
         }
