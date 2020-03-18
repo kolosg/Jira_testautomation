@@ -8,8 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
 
-import static com.kolosg.Jira.testautomation.utility.Util.BASE_URL;
-
 public class JiraLoginTest {
 
     private Login login;
@@ -46,10 +44,10 @@ public class JiraLoginTest {
         ArrayList<String> tabs = new ArrayList<String>(login.getDriver().getWindowHandles());
         login.getCAPTCHA();
         login.getDriver().switchTo().window(tabs.get(1));
-        Util.navigateToURL(login.getDriver(), BASE_URL + "/secure/Dashboard.jspa");
+        Util.navigateToURL(login.getDriver(), BASE_URL);
         login.getCAPTCHA();
         login.getDriver().switchTo().window(tabs.get(2));
-        Util.navigateToURL(login.getDriver(), BASE_URL + "/secure/Dashboard.jspa");
+        Util.navigateToURL(login.getDriver(), BASE_URL);
         login.getCAPTCHA();
         String result = login.getErrorMessage();
         System.out.println(result);

@@ -22,7 +22,7 @@ public class JiraVersionsWithGlassTest {
         login = new JiraLogin(Util.createDriver("Chrome"));
         jiraGlassDocumentation = new JiraGlassDocumentation(login.getDriver());
         jiraProjectVersions = new JiraProjectVersions(login.getDriver());
-        Util.navigateToURL(login.getDriver(), Util.BASE_URL + "/secure/Dashboard.jspa");
+        Util.navigateToURL(login.getDriver(), Util.BASE_URL);
         login.loginAttempt(Util.USERNAME, Util.PASSWORD);
         login.waitForSuccessfulLogin();
     }

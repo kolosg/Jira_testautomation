@@ -22,23 +22,15 @@ public class JiraBrowseProject extends JiraFeatureBuild{
     @FindBy(partialLinkText = "TOUCAN")
     WebElement toucanProject;
 
-    @FindBy(id ="issuedetails")
-    WebElement issueDetails;
-
-    private List<WebElement> projects;
+    @FindBy(className = "aui-avatar aui-avatar-small aui-avatar-project jira-system-avatar")
+    List<WebElement> projects;
 
     public JiraBrowseProject(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    public void collectProjects() {
-        projects = driver.findElements(By.className("aui-avatar aui-avatar-small aui-avatar-project jira-system-avatar"));
-    }
-
     public boolean validateProjectsExist1() {
-        //collectProjects();
-        //System.out.println(projects);
         return waitUntilElementLoaded(jetiProject).isDisplayed() &&
                waitUntilElementLoaded(coalaProject).isDisplayed() &&
                waitUntilElementLoaded(toucanProject).isDisplayed();
