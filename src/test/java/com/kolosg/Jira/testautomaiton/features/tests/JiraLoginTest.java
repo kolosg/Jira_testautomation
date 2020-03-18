@@ -1,7 +1,7 @@
 package com.kolosg.Jira.testautomaiton.features.tests;
 
 
-import com.kolosg.Jira.testautomation.features.Login;
+import com.kolosg.Jira.testautomation.features.JiraLogin;
 import com.kolosg.Jira.testautomation.utility.Util;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,12 +10,14 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 public class JiraLoginTest {
 
-    private Login login;
+
+    private JiraLogin login;
+
     private final String loginTestData = "/login_test_data.csv";
 
     @BeforeEach
     void setUp() {
-        login = new Login(Util.createDriver("Chrome"));
+        login = new JiraLogin(Util.createDriver("Chrome"));
     }
 
     @AfterEach
@@ -61,5 +63,4 @@ public class JiraLoginTest {
         login.loginValidation();
         Assertions.assertEquals(login.getValidationURL(), login.getDriver().getCurrentUrl());
     }
-
-    }
+}

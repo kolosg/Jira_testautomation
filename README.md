@@ -2,7 +2,7 @@
 https://jira.codecool.codecanvas.hu/ automated tests project
 
 ##Getting Started
-Clone the repository, and set your environment variables.
+- Clone the repository, and set your environment variables.
 
 ###Environments variables in use 
 - JIRA_USERNAME
@@ -12,13 +12,12 @@ Clone the repository, and set your environment variables.
 - DRIVER_PROPERTY
 - DRIVER_PATH
 - TIMEOUT_LIMIT
-- WAITING_SECONDS
 
 ####"Why?"
-These environment variables hide the real data from public.
+- These environment variables hide the real data from public.
 
 ##Running the tests
-Run all tests by right clicking on /test/java directory.
+- Run all tests by right clicking on /test/java directory.
 
 
 ###Technologies:
