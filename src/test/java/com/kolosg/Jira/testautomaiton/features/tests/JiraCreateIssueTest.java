@@ -2,7 +2,6 @@ package com.kolosg.Jira.testautomaiton.features.tests;
 
 import com.kolosg.Jira.testautomation.features.JiraCreateIssue;
 import com.kolosg.Jira.testautomation.features.JiraLogin;
-import com.kolosg.Jira.testautomation.utility.Util;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,11 +17,8 @@ public class JiraCreateIssueTest{
 
     @BeforeEach
     void setUp() {
-        login = new JiraLogin(Util.createDriver("Chrome"));
+        login = new JiraLogin();
         createIssue = new JiraCreateIssue(login.getDriver());
-        Util.navigateToURL(login.getDriver(), Util.BASE_URL);
-        login.loginAttempt(Util.USERNAME, Util.PASSWORD);
-        login.waitForSuccessfulLogin();
     }
 
     @AfterEach

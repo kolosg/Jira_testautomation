@@ -19,12 +19,9 @@ public class JiraVersionsWithGlassTest {
 
     @BeforeEach
     void setUp() {
-        login = new JiraLogin(Util.createDriver("Chrome"));
+        login = new JiraLogin();
         jiraGlassDocumentation = new JiraGlassDocumentation(login.getDriver());
         jiraProjectVersions = new JiraProjectVersions(login.getDriver());
-        Util.navigateToURL(login.getDriver(), Util.BASE_URL);
-        login.loginAttempt(Util.USERNAME, Util.PASSWORD);
-        login.waitForSuccessfulLogin();
     }
 
     @AfterEach
@@ -36,13 +33,13 @@ public class JiraVersionsWithGlassTest {
     void validateNewProjectVersionOnGlass(){
         List<String> versionNames;
         String testVersionName = "Random version: " + Util.generateRandomNumberInRange(100);
-        Util.navigateToURL(login.getDriver(), Util.BASE_URL + "/plugins/servlet/project-config/PP4/versions");
-        jiraProjectVersions.addNewVersion(testVersionName, "test description");
+        Util.navigateToURL(login.getDriver(), jiraProjectVersions.getJiraProjectVersionURL());
+        jiraProjectVersions.addNewVersion(testVersionName);
         versionNames = jiraProjectVersions.getVersionNames();
-        Util.navigateToURL(jiraProjectVersions.getDriver(), Util.BASE_URL + "/projects/PP4?selectedItem=com.codecanvas.glass:glass");
+        Util.navigateToURL(jiraProjectVersions.getDriver(), jiraGlassDocumentation.getJiraGlassDocumentationURL());
         jiraGlassDocumentation.clickOnVersions();
         Assertions.assertEquals(versionNames.contains(testVersionName), jiraGlassDocumentation.getGlassVersionNames().contains(testVersionName));
-        Util.navigateToURL(login.getDriver(), Util.BASE_URL + "/plugins/servlet/project-config/PP4/versions");
+        Util.navigateToURL(login.getDriver(), jiraProjectVersions.getJiraProjectVersionURL());
         jiraProjectVersions.deleteVersion(testVersionName);
     }
 }

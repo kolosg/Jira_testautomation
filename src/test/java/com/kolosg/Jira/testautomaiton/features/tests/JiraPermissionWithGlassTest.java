@@ -21,12 +21,9 @@ public class JiraPermissionWithGlassTest {
 
     @BeforeEach
     void setUp() {
-        login = new JiraLogin(Util.createDriver("Chrome"));
+        login = new JiraLogin();
         jiraGlassDocumentation = new JiraGlassDocumentation(login.getDriver());
         jiraProjectPermissions = new JiraProjectPermissions(login.getDriver());
-        Util.navigateToURL(login.getDriver(), Util.BASE_URL);
-        login.loginAttempt(Util.USERNAME, Util.PASSWORD);
-        login.waitForSuccessfulLogin();
     }
 
     @AfterEach
@@ -37,9 +34,9 @@ public class JiraPermissionWithGlassTest {
     @ParameterizedTest
     @CsvFileSource(resources = projectPermissionNames, numLinesToSkip = 1)
     void validateProjectPermissionWithGlass(String permissionName) {
-        Util.navigateToURL(login.getDriver(), Util.BASE_URL + "/plugins/servlet/project-config/PP4/permissions");
+        Util.navigateToURL(login.getDriver(), jiraProjectPermissions.getJiraProjectPermissionURL());
         boolean result = jiraProjectPermissions.validatePermissionGrant(permissionName);
-        Util.navigateToURL(jiraProjectPermissions.getDriver(), Util.BASE_URL + "/projects/PP4?selectedItem=com.codecanvas.glass:glass");
+        Util.navigateToURL(jiraProjectPermissions.getDriver(), jiraGlassDocumentation.getJiraGlassDocumentationURL());
         jiraGlassDocumentation.clickOnPermissions();
         Assertions.assertTrue(result && jiraGlassDocumentation.getSelectedPermissionGranting(permissionName));
     }

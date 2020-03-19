@@ -1,5 +1,6 @@
 package com.kolosg.Jira.testautomation.features;
 
+import com.kolosg.Jira.testautomation.utility.Util;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,9 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class JiraProjectPermissions extends JiraFeatureBuild {  //table[@class='aui jira-admin-table']/tbody/tr/td/p[@class='title']
+public class JiraProjectPermissions extends JiraFeatureBuild {
+
+    private final String jiraProjectPermissionURL = Util.BASE_URL + "/plugins/servlet/project-config/PP4/permissions";
 
     @FindBy(xpath = "//table[@class='aui jira-admin-table']/tbody/tr/td/p[@class='title']")
     List<WebElement> projectPermissions;
@@ -44,4 +47,7 @@ public class JiraProjectPermissions extends JiraFeatureBuild {  //table[@class='
         return getSelectedPermissionGranting(permission).equalsIgnoreCase("Any logged in user");
     }
 
+    public String getJiraProjectPermissionURL() {
+        return jiraProjectPermissionURL;
+    }
 }

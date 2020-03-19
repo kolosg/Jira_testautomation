@@ -1,5 +1,6 @@
 package com.kolosg.Jira.testautomation.features;
 
+import com.kolosg.Jira.testautomation.utility.Util;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +12,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class JiraProjectVersions extends JiraFeatureBuild{
+
+    private final String jiraProjectVersionURL = Util.BASE_URL + "/plugins/servlet/project-config/PP4/versions";
 
     @FindBy(xpath = "//*[@id='project-config-versions-table']/tbody[1]/tr/td[3]/input[1]")
     private WebElement nameInputField;
@@ -40,9 +43,9 @@ public class JiraProjectVersions extends JiraFeatureBuild{
         return versionNames.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
-    public void addNewVersion(String newVersionName, String newVersionDescription) {
+    public void addNewVersion(String newVersionName) {
         waitUntilElementLoaded(nameInputField).sendKeys(newVersionName);
-        descriptionInputField.sendKeys(newVersionDescription);
+        descriptionInputField.sendKeys("test description");
         clickOnElement(addVersionButton);
     }
 
@@ -56,4 +59,7 @@ public class JiraProjectVersions extends JiraFeatureBuild{
         clickOnElement(confirmDeleteButton);
     }
 
+    public String getJiraProjectVersionURL() {
+        return jiraProjectVersionURL;
+    }
 }

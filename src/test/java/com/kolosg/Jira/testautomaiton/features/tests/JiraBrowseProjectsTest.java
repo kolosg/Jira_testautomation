@@ -17,11 +17,8 @@ public class JiraBrowseProjectsTest {
 
     @BeforeEach
     void setUp() {
-        login = new JiraLogin(Util.createDriver("Chrome"));
+        login = new JiraLogin();
         jiraBrowseProject = new JiraBrowseProject(login.getDriver());
-        Util.navigateToURL(login.getDriver(), BASE_URL);
-        login.loginAttempt(Util.USERNAME, Util.PASSWORD);
-        login.waitForSuccessfulLogin();
     }
 
     @AfterEach
