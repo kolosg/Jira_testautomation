@@ -18,12 +18,9 @@ public class JiraComponentsWithGlassTest {
 
     @BeforeEach
     void setUp() {
-        login = new JiraLogin(Util.createDriver("Chrome"));
+        login = new JiraLogin();
         jiraGlassDocumentation = new JiraGlassDocumentation(login.getDriver());
         jiraProjectComponents = new JiraProjectComponents(login.getDriver());
-        Util.navigateToURL(login.getDriver(), Util.BASE_URL);
-        login.loginAttempt(Util.USERNAME, Util.PASSWORD);
-        login.waitForSuccessfulLogin();
     }
 
     @AfterEach
@@ -35,11 +32,11 @@ public class JiraComponentsWithGlassTest {
     void validateNewProjectVersionOnGlass(){
         List<String> componentNames;
         String testComponentName = "Random component: " + Util.generateRandomNumberInRange(100);
-        Util.navigateToURL(login.getDriver(), Util.BASE_URL + "/projects/PP4?selectedItem=com.atlassian.jira.jira-projects-plugin:components-page");
+        Util.navigateToURL(login.getDriver(), jiraProjectComponents.getJiraProjectComponentURL());
         jiraProjectComponents.addNewComponent( testComponentName);
-        Util.navigateToURL(jiraProjectComponents.getDriver(), Util.BASE_URL + "/projects/PP4?selectedItem=com.codecanvas.glass:glass");
+        Util.navigateToURL(jiraProjectComponents.getDriver(), jiraGlassDocumentation.getJiraGlassDocumentationURL());
         componentNames = jiraGlassDocumentation.getGlassComponentNames();
-        Util.navigateToURL(login.getDriver(), Util.BASE_URL + "/projects/PP4?selectedItem=com.atlassian.jira.jira-projects-plugin:components-page");
+        Util.navigateToURL(login.getDriver(), jiraGlassDocumentation.getJiraGlassDocumentationURL());
         Assertions.assertEquals(jiraProjectComponents.validateNewComponent().contains(testComponentName), componentNames.contains(testComponentName));
         jiraProjectComponents.deleteTestComponent(testComponentName);
     }

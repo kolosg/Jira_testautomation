@@ -1,5 +1,6 @@
 package com.kolosg.Jira.testautomation.features;
 
+import com.kolosg.Jira.testautomation.utility.Util;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class JiraProjectComponents extends JiraFeatureBuild{
+
+    private final String jiraProjectComponentURL = Util.BASE_URL + "/projects/PP4?selectedItem=com.atlassian.jira.jira-projects-plugin:components-page";
 
     @FindBy(xpath = "//*[@id='components-add__component']/div[1]/input")
     private WebElement componentNameInputField;
@@ -56,4 +59,7 @@ public class JiraProjectComponents extends JiraFeatureBuild{
         clickOnElement(confirmDeleteButton);
     }
 
+    public String getJiraProjectComponentURL() {
+        return jiraProjectComponentURL;
+    }
 }

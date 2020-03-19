@@ -1,5 +1,6 @@
 package com.kolosg.Jira.testautomation.features;
 
+import com.kolosg.Jira.testautomation.utility.Util;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class JiraGlassDocumentation extends JiraFeatureBuild {
+
+    private final String jiraGlassDocumentationURL = Util.BASE_URL + "/projects/PP4?selectedItem=com.codecanvas.glass:glass";
 
     @FindBy(xpath = "//span[@title='Glass Documentation']")
     private WebElement glassDocumentationButton;
@@ -53,7 +56,7 @@ public class JiraGlassDocumentation extends JiraFeatureBuild {
         return glassComponentNames.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
-      public List<String> getGlassPermissionNames() {
+    public List<String> getGlassPermissionNames() {
           return glassPermissionNames.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
@@ -77,4 +80,7 @@ public class JiraGlassDocumentation extends JiraFeatureBuild {
         }
     }
 
+    public String getJiraGlassDocumentationURL() {
+        return jiraGlassDocumentationURL;
+    }
 }

@@ -26,6 +26,12 @@ public class JiraLogin extends JiraFeatureBuild{
     @FindBy(xpath = "//*[@id=\"header-details-user-fullname\"]//img")
     WebElement userProfilePicture;
 
+    public JiraLogin() {
+        super(Util.createDriver("Chrome"));
+        PageFactory.initElements(driver, this);
+        setUpLogin();
+    }
+
     public JiraLogin(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -57,6 +63,12 @@ public class JiraLogin extends JiraFeatureBuild{
 
     public void loginValidation() {
         Util.navigateToURL(driver, validationURL);
+    }
+
+    private void setUpLogin() {
+        Util.navigateToURL(driver, Util.BASE_URL);
+        loginAttempt(Util.USERNAME, Util.PASSWORD);
+        waitForSuccessfulLogin();
     }
 
     /*
