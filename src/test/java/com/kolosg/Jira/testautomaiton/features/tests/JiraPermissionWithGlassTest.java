@@ -14,6 +14,9 @@ public class JiraPermissionWithGlassTest {
     private JiraGlassDocumentation jiraGlassDocumentation;
     private JiraProjectPermissions jiraProjectPermissions;
 
+    private final String projectPermissionNames = "/project_permission_fields.csv";
+
+
     @BeforeEach
     void setUp() {
         login = new JiraLogin(Util.createDriver("Chrome"));
