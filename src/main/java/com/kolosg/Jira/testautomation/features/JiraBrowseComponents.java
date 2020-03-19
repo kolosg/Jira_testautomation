@@ -19,21 +19,22 @@ public class JiraBrowseComponents extends JiraFeatureBuild{
     @FindBy(xpath = "//*[@id='components-add__component']/div[5]/button")
     private WebElement addButton;
 
-    @FindBy(xpath = "//*[@id='components-table']/tbody[2]/tr")
+    @FindBy(xpath = "//*[@id='components-table']/tbody[2]/tr/td[@class='components-table__name']")
     private List<WebElement> existingComponents;
+
+    @FindBy(xpath = "//*[@id='components-table']/tbody[2]/tr/td[@class='dynamic-table__actions']/div/a/span")
+    private List<WebElement> actionsButtons;
+
+    @FindBy(xpath = "//a[text()='Delete'][@class='component-delete-dialog deletecomponent_link']")
+    private List<WebElement> deleteButtons;
+
+    @FindBy(xpath = "//*[@id='submit']")
+    private WebElement confirmDeleteButton;
 
     public JiraBrowseComponents (WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
-
-    /*public List<String> getComponentNames() {
-        List<String> componentNamesList = new ArrayList<>();
-        for (WebElement component : existingComponents){
-            componentNamesList.add(waitUntilElementLoaded(component).getText());
-        }
-        return componentNamesList;
-    }*/
 
     public void addNewComponent(String newComponentName) {
         waitUntilElementLoaded(componentNameInputField).sendKeys(newComponentName);
@@ -42,5 +43,16 @@ public class JiraBrowseComponents extends JiraFeatureBuild{
         clickOnElement(addButton);
     }
 
+    public boolean validateNewComponent(String newComponentName){
+        return newComponentName.equalsIgnoreCase(existingComponents.get(0).getText());
+    }
+
+    public void deleteTestComponent(String newComponentName) {
+        if (validateNewComponent(newComponentName)) {
+            clickOnElement(actionsButtons.get(0));
+            clickOnElement(deleteButtons.get(0));
+            clickOnElement(confirmDeleteButton);
+        }
+    }
 
 }
