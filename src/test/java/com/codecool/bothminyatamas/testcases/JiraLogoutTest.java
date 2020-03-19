@@ -10,11 +10,11 @@ public class JiraLogoutTest extends BaseTest{
     private Logout logout = new Logout(driver, wait);
     private JiraLogin login = new JiraLogin(driver);
 
-
-
     @Test
     void logoutHappyPassTest(){
+        driver.get(Util.BASE_URL);
         login.loginAttempt(Util.USERNAME,Util.PASSWORD);
+        login.waitForSuccessfulLogin();
         logout.logout();
         boolean amILoggedOut = logout.isLoggedOut(driver);
         Assertions.assertTrue(amILoggedOut);

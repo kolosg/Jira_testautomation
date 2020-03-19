@@ -1,5 +1,6 @@
 package com.codecool.bothminyatamas.javaPOM;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -22,5 +23,8 @@ public abstract class BasePOM {
     protected void clickOnElement(WebElement webElement) {
         waitUntilElementClickable(webElement);
         webElement.click();
+    }
+    public void refreshPage(WebDriver driver){
+        driver.navigate().refresh();
     }
 }

@@ -9,16 +9,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Logout extends BasePOM{
-
-    @FindBy(id = "login-form-username")
-    private WebElement loginUsernameField;
-
-    @FindBy(id = "login-form-password")
-    private WebElement loginPasswordField;
-
-    @FindBy(id = "login")
-    private WebElement loginButton;
-
     @FindBy(xpath = "//*[@id='header-details-user-fullname']/span/span/img")
     WebElement profilePicture;
 
@@ -41,12 +31,5 @@ public class Logout extends BasePOM{
         String expectedErrorMessage = "You must log in to access this page.";
         String errorMessage = driver.findElement(By.xpath("/html/body/div/section/div/div/section/form/div[1]/div[1]/p[1]")).getText();
         return expectedErrorMessage.equals(errorMessage);
-    }
-
-    public void login() {
-        waitUntilElementLoaded(loginUsernameField);
-        loginUsernameField.sendKeys(Util.USERNAME);
-        loginPasswordField.sendKeys(Util.PASSWORD);
-        clickOnElement(loginButton);
     }
 }
