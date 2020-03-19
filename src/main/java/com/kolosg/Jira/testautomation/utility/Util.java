@@ -16,7 +16,7 @@ public class Util {
 
     public final static String USERNAME = getEnvironmentVariable("jira_username");
     public final static String PASSWORD = getEnvironmentVariable("jira_password");
-    public final static String BASE_URL = "https://jira.codecool.codecanvas.hu/";
+    public final static String BASE_URL = "https://jira.codecool.codecanvas.hu";
 
     //method simply creates the given webdriver
     public static WebDriver createDriver(String driverType) {

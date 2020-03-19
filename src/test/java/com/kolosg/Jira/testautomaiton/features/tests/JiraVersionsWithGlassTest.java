@@ -41,7 +41,9 @@ public class JiraVersionsWithGlassTest {
         versionNames = jiraProjectVersions.getVersionNames();
         Util.navigateToURL(jiraProjectVersions.getDriver(), Util.BASE_URL + "/projects/PP4?selectedItem=com.codecanvas.glass:glass");
         jiraGlassDocumentation.clickOnVersions();
-        Assertions.assertEquals(versionNames.size(), jiraGlassDocumentation.getGlassVersionNames().size());
+        System.out.println(versionNames);
+        System.out.println(jiraGlassDocumentation.getGlassVersionNames());
+        Assertions.assertEquals(versionNames.contains(testVersionName), jiraGlassDocumentation.getGlassVersionNames().contains(testVersionName));
         Util.navigateToURL(login.getDriver(), Util.BASE_URL + "/plugins/servlet/project-config/PP4/versions");
         jiraProjectVersions.deleteVersion(testVersionName);
     }

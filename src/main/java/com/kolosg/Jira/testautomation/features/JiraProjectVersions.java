@@ -7,8 +7,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class JiraProjectVersions extends JiraFeatureBuild{
 
@@ -36,11 +36,8 @@ public class JiraProjectVersions extends JiraFeatureBuild{
     }
 
     public List<String> getVersionNames() {
-        List<String> versionNamesList = new ArrayList<>();
-        for (WebElement version : versionNames){
-            versionNamesList.add(waitUntilElementLoaded(version).getText());
-        }
-        return versionNamesList;
+        waitUntilElementClickable(addVersionButton);
+        return versionNames.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
     public void addNewVersion(String newVersionName, String newVersionDescription) {
