@@ -23,6 +23,8 @@ public class EditIssue extends BasePOM{
     @FindBy(xpath = "/html/body/div[7]/div[2]/div[1]/div/form/div[2]/div/a")
     WebElement cancelLinkOnEditIssueModal;
 
+    @FindBy(xpath = "/html/body/div[6]")
+    WebElement editModal;
 
 
     public EditIssue(WebDriverWait wait, WebDriver driver) {
@@ -41,6 +43,7 @@ public class EditIssue extends BasePOM{
         else {
             cancelLinkOnEditIssueModal.click();
         }
+        waitUntilElementNotVisible(editModal);
     }
 
     public String getIssueCurrentName(){

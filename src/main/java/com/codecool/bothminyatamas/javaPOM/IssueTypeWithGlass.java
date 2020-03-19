@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.*;
+
 public class IssueTypeWithGlass extends BasePOM {
 
     @FindBy(className = "project-config-itemlist")
@@ -26,7 +28,6 @@ public class IssueTypeWithGlass extends BasePOM {
 
     public WebElement getItemListFromSummary(){
         waitUntilElementLoaded(issueTypeListsFromSummary);
-        System.out.println(issueTypeListsFromSummary.getText());
         return issueTypeListsFromSummary;
     }
 
@@ -34,8 +35,57 @@ public class IssueTypeWithGlass extends BasePOM {
         waitUntilElementClickable(issueTypeDropdown);
         issueTypeDropdown.click();
         waitUntilElementLoaded(issueTypeListsFromDocumentation);
-        System.out.println(issueTypeListsFromDocumentation.getText());
         return issueTypeListsFromDocumentation;
+    }
+
+    public String removeDuplicatedWordsFromString(String str) {
+        String[] strWords = str.split("\\s+");
+
+        //convert String array to LinkedHashSet to remove duplicates
+        LinkedHashSet<String> lhSetWords
+                = new LinkedHashSet<String>( Arrays.asList(strWords) );
+
+        //join the words again by space
+        StringBuilder sbTemp = new StringBuilder();
+        int index = 0;
+
+        for(String s : lhSetWords){
+
+            if(index > 0)
+                sbTemp.append(" ");
+
+            sbTemp.append(s);
+            index++;
+        }
+
+        str = sbTemp.toString();
+        return str;
+    }
+
+    public String orderByAlphabeticcalyWordsInAString(String str){
+        String[] strWords = str.split("\\s+");
+        List<String> al = new ArrayList<String>();
+        al = Arrays.asList(strWords);
+
+        String temp;
+
+        for(int i=0; i<5; i++)
+        {
+            for(int j=1; j<5; j++)
+            {
+                if(strWords[j-1].compareTo(strWords[j])>0)
+                {
+                    temp=strWords[j-1];
+                    strWords[j-1]=strWords[j];
+                    strWords[j]=temp;
+                }
+            }
+        }
+        String finalStr = "";
+        for (int i=0; i<5; i++){
+            finalStr = finalStr + strWords[i] + " ";
+        }
+        return finalStr;
     }
 
 }

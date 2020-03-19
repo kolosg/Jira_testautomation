@@ -20,6 +20,10 @@ public abstract class BasePOM {
         wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 
+    protected void waitUntilElementNotVisible(WebElement webElement){
+        wait.until(ExpectedConditions.invisibilityOf(webElement));
+    }
+
     protected void clickOnElement(WebElement webElement) {
         waitUntilElementClickable(webElement);
         webElement.click();

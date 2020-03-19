@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
+import java.time.Duration;
+
 public class JiraEditIssuesTest extends BaseTest {
     private JiraLogin login = new JiraLogin(driver);
     private EditIssue editIssue = new EditIssue(wait, driver);
@@ -26,8 +28,15 @@ public class JiraEditIssuesTest extends BaseTest {
     @Test
     public void testToValidateIssueEditing() {
         Util.navigateToURL(driver,Util.BASE_URL + "/projects/MTP/issues/MTP-656");
+        editIssue.editIssueName(originalSummaryName,true);
         editIssue.editIssueName(newSummaryName, true);
-        editIssue.refreshPage(driver);
+
+        //go back to the main page
+        Util.navigateToURL(driver,Util.BASE_URL);
+        login.waitForSuccessfulLogin();
+
+        //go to the project page
+        Util.navigateToURL(driver,Util.BASE_URL + "/projects/MTP/issues/MTP-656");
         Assertions.assertEquals(newSummaryName ,editIssue.getIssueCurrentName());
         editIssue.editIssueName(originalSummaryName, true);
     }
@@ -45,7 +54,14 @@ public class JiraEditIssuesTest extends BaseTest {
         //go to the project page
         Util.navigateToURL(driver,Util.BASE_URL + "/projects/MTP/issues/MTP-656");
         editIssue.editIssueName(newSummaryName, false);
-        System.out.println(newSummaryName +"\n"+editIssue.getIssueCurrentName());
+        wait.withTimeout(Duration.ofSeconds(2));
+
+        //go back to the main page
+        Util.navigateToURL(driver,Util.BASE_URL);
+        login.waitForSuccessfulLogin();
+
+        //go to the project page
+        Util.navigateToURL(driver,Util.BASE_URL + "/projects/MTP/issues/MTP-656");
         Assertions.assertNotEquals(newSummaryName, editIssue.getIssueCurrentName());
     }
 

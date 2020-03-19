@@ -27,9 +27,16 @@ public class JiraIssueTypeWithGlassTest extends BaseTest{
     @Test
     void verifyIssueTypes(){
         Util.navigateToURL(driver,Util.BASE_URL + "/plugins/servlet/project-config/PP1/summary");
-        WebElement issueTypesFromSummary = issueTypeWithGlass.getItemListFromSummary();
+        String issueTypesFromSummary = issueTypeWithGlass.getItemListFromSummary().getText().toLowerCase();
         Util.navigateToURL(driver,Util.BASE_URL + "/projects/PP1?selectedItem=com.codecanvas.glass:glass");
-        WebElement issueTypesFromDocumentation = issueTypeWithGlass.getItemListFromDocumentation();
+        String issueTypesFromDocumentation = issueTypeWithGlass.getItemListFromDocumentation().getText().toLowerCase();
+
+        issueTypesFromSummary = issueTypeWithGlass.removeDuplicatedWordsFromString(issueTypesFromSummary);
+        issueTypesFromDocumentation = issueTypeWithGlass.removeDuplicatedWordsFromString(issueTypesFromDocumentation);
+
+        issueTypesFromSummary = issueTypeWithGlass.orderByAlphabeticcalyWordsInAString(issueTypesFromSummary);
+        issueTypesFromDocumentation = issueTypeWithGlass.orderByAlphabeticcalyWordsInAString(issueTypesFromDocumentation);
+
         Assertions.assertEquals(issueTypesFromSummary, issueTypesFromDocumentation);
     }
 }
