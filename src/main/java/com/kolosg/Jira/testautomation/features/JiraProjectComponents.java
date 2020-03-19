@@ -7,8 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class JiraBrowseComponents extends JiraFeatureBuild{
+public class JiraProjectComponents extends JiraFeatureBuild{
 
     @FindBy(xpath = "//*[@id='components-add__component']/div[1]/input")
     private WebElement componentNameInputField;
@@ -31,7 +32,7 @@ public class JiraBrowseComponents extends JiraFeatureBuild{
     @FindBy(xpath = "//*[@id='submit']")
     private WebElement confirmDeleteButton;
 
-    public JiraBrowseComponents (WebDriver driver) {
+    public JiraProjectComponents(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
@@ -43,16 +44,17 @@ public class JiraBrowseComponents extends JiraFeatureBuild{
         clickOnElement(addButton);
     }
 
-    public boolean validateNewComponent(String newComponentName){
-        return newComponentName.equalsIgnoreCase(existingComponents.get(0).getText());
+    public List<String> validateNewComponent(){
+        waitUntilElementClickable(componentNameInputField);
+        return existingComponents.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
-    public void deleteTestComponent(String newComponentName) {
+    /*public void deleteTestComponent(String newComponentName) {
         if (validateNewComponent(newComponentName)) {
             clickOnElement(actionsButtons.get(0));
             clickOnElement(deleteButtons.get(0));
             clickOnElement(confirmDeleteButton);
         }
-    }
+    }*/
 
 }

@@ -22,7 +22,7 @@ public class JiraGlassDocumentation extends JiraFeatureBuild {
     @FindBy(xpath = "//*[@id='versions-table']/tbody[2]/tr/td[@class='versions-table__name']")
     private List<WebElement> glassVersionNames;
 
-    @FindBy(xpath = "///*[@id='components-table']/tbody[2]/tr/td[@class='components-table__name']")
+    @FindBy(xpath = "//*[@id='components-table']/tbody[2]/tr/td[@class='components-table__name']")
     private List<WebElement> glassComponentNames;
 
     public JiraGlassDocumentation(WebDriver driver) {
