@@ -41,6 +41,6 @@ public class JiraComponentsWithGlassTest {
         componentNames = jiraGlassDocumentation.getGlassComponentNames();
         Util.navigateToURL(login.getDriver(), Util.BASE_URL + "/projects/PP4?selectedItem=com.atlassian.jira.jira-projects-plugin:components-page");
         Assertions.assertEquals(jiraProjectComponents.validateNewComponent().contains(testComponentName), componentNames.contains(testComponentName));
-        //jiraProjectComponents.deleteTestComponent(testComponentName);
+        jiraProjectComponents.deleteTestComponent(testComponentName);
     }
 }

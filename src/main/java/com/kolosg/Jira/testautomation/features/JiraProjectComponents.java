@@ -49,12 +49,11 @@ public class JiraProjectComponents extends JiraFeatureBuild{
         return existingComponents.stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
-    /*public void deleteTestComponent(String newComponentName) {
-        if (validateNewComponent(newComponentName)) {
-            clickOnElement(actionsButtons.get(0));
-            clickOnElement(deleteButtons.get(0));
-            clickOnElement(confirmDeleteButton);
-        }
-    }*/
+    public void deleteTestComponent(String newComponentName) {
+        int componentIndex = validateNewComponent().indexOf(newComponentName);
+        clickOnElement(actionsButtons.get(componentIndex));
+        clickOnElement(deleteButtons.get(existingComponents.size() - 1));
+        clickOnElement(confirmDeleteButton);
+    }
 
 }
