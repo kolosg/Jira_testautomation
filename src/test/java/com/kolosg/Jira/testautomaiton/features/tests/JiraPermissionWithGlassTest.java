@@ -5,6 +5,7 @@ import com.kolosg.Jira.testautomation.features.JiraLogin;
 import com.kolosg.Jira.testautomation.features.JiraProjectPermissions;
 import com.kolosg.Jira.testautomation.utility.Util;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -35,10 +36,12 @@ public class JiraPermissionWithGlassTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = projectPermissionNames, numLinesToSkip = 1)
-    void getasd(String permissionName) {
+    void validateProjectPermissionWithGlass(String permissionName) {
         Util.navigateToURL(login.getDriver(), Util.BASE_URL + "/plugins/servlet/project-config/PP4/permissions");
-        System.out.println(jiraProjectPermissions.getSelectedPermissionGranting(permissionName));
-
+        boolean result = jiraProjectPermissions.validatePermissionGrant(permissionName);
+        Util.navigateToURL(jiraProjectPermissions.getDriver(), Util.BASE_URL + "/projects/PP4?selectedItem=com.codecanvas.glass:glass");
+        jiraGlassDocumentation.clickOnPermissions();
+        Assertions.assertTrue(result && jiraGlassDocumentation.getSelectedPermissionGranting(permissionName));
     }
 
 

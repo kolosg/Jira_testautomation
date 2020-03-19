@@ -40,4 +40,8 @@ public class JiraProjectPermissions extends JiraFeatureBuild {  //table[@class='
         return selectedPermission.findElement(By.xpath(".//dd")).getText();
     }
 
+    public boolean validatePermissionGrant(String permission){
+        return getSelectedPermissionGranting(permission).equalsIgnoreCase("Any logged in user");
+    }
+
 }
