@@ -6,6 +6,8 @@ import com.kolosg.Jira.testautomation.utility.Util;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.By;
 
 import java.time.Duration;
@@ -74,4 +76,10 @@ public class JiraEditIssuesTest extends BaseTest {
                 driver.findElement(By.xpath("//*[@id=\"edit-issue-dialog\"]/div[2]/div[1]/div/form/div[1]/div/div[1]/div")).getText());
     }
 
+    @ParameterizedTest
+    @CsvFileSource(resources = "/projects.csv", numLinesToSkip = 1)
+    public void edibilityDifferentProjects(String projectName){
+        Util.navigateToURL(driver, Util.BASE_URL + "projects/" + projectName);
+        Assertions.assertTrue(editIssue.isPresentProjectIssueList());
+    }
 }

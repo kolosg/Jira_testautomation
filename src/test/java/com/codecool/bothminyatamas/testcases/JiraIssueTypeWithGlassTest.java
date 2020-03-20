@@ -14,8 +14,6 @@ public class JiraIssueTypeWithGlassTest extends BaseTest{
     private JiraLogin login = new JiraLogin(driver);
     private IssueTypeWithGlass issueTypeWithGlass = new IssueTypeWithGlass(wait,driver);
 
-    WebElement issueTypes;
-
     @BeforeEach
     void loginToJira(){
         driver.get(Util.BASE_URL);

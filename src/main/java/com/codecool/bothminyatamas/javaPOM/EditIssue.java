@@ -20,11 +20,17 @@ public class EditIssue extends BasePOM{
     @FindBy(xpath = "//*[@id=\"summary-val\"]")
     WebElement editableNameField;
 
-    @FindBy(xpath = "/html/body/div[7]/div[2]/div[1]/div/form/div[2]/div/a")
+    @FindBy(linkText = "cancel")
     WebElement cancelLinkOnEditIssueModal;
 
     @FindBy(xpath = "/html/body/div[6]")
     WebElement editModal;
+
+    @FindBy(className = "simple-issue-list")
+    WebElement projectIssueList;
+
+    @FindBy(xpath = "/html/body/div/section/div[1]/div/div[1]/header/div/div[1]")
+    WebElement projectImage;
 
 
     public EditIssue(WebDriverWait wait, WebDriver driver) {
@@ -49,5 +55,10 @@ public class EditIssue extends BasePOM{
     public String getIssueCurrentName(){
         waitUntilElementLoaded(editableNameField);
         return editableNameField.getText();
+    }
+
+    public boolean isPresentProjectIssueList(){
+        waitUntilElementLoaded(projectImage);
+        return projectIssueList.isDisplayed();
     }
 }

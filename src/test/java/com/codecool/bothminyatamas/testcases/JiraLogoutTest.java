@@ -12,7 +12,7 @@ public class JiraLogoutTest extends BaseTest{
 
     @Test
     void logoutHappyPassTest(){
-        driver.get(Util.BASE_URL);
+        Util.navigateToURL(driver, Util.BASE_URL);
         login.loginAttempt(Util.USERNAME,Util.PASSWORD);
         login.waitForSuccessfulLogin();
         logout.logout();
