@@ -39,7 +39,7 @@ public class Util {
 
     //method to get pre defined environment variables by key
     public static String getEnvironmentVariable(String variableName) {
-        String variable = System.getenv(variableName.toUpperCase());
+        String variable = System.getProperty(variableName.toUpperCase());
         if (variable == null) {
             throw new IllegalArgumentException("Environment variable not found!");
         }
