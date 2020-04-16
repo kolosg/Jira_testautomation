@@ -1,6 +1,5 @@
 package com.kolosg.Jira.testautomation.features;
 
-import com.kolosg.Jira.testautomation.utility.Util;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,7 +21,7 @@ public abstract class JiraFeatureBuild {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 30);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Long.parseLong(Util.getEnvironmentVariable("timeout_limit")), TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
     protected WebElement waitUntilElementClickable(WebElement webElement) {
