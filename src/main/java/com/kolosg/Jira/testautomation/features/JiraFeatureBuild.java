@@ -17,10 +17,9 @@ public abstract class JiraFeatureBuild {
     protected WebDriverWait wait;
     protected final String BASE_URL = Util.getEnvironmentVariable("base_url");
 
-    public JiraFeatureBuild(WebDriver driver) {
+    public JiraFeatureBuild(WebDriver driver){
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 30);
-        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
@@ -34,13 +33,11 @@ public abstract class JiraFeatureBuild {
         return webElement;
     }
 
-    protected boolean waitUntilElementTextFound(WebElement webElement) {
+    protected void waitUntilElementTextFound(WebElement webElement) {
         try {
             webElement.isDisplayed();
-            return true;
         } catch (Exception e) {
             System.out.println("No Element Found!");
-            return false;
         }
     }
 

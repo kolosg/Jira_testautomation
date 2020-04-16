@@ -1,6 +1,7 @@
 package com.kolosg.Jira.testautomation.features;
 
 import com.kolosg.Jira.testautomation.utility.Util;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -35,8 +36,8 @@ public class JiraLogin extends JiraFeatureBuild{
         }
     }
 
-    public JiraLogin() throws MalformedURLException {
-        super(Util.createDriver());
+    public JiraLogin(WebDriver driver) throws MalformedURLException {
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 
