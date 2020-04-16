@@ -3,11 +3,12 @@ package com.kolosg.Jira.testautomation.features;
 import com.kolosg.Jira.testautomation.utility.Util;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-//import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
+
+//import org.openqa.selenium.chrome.ChromeOptions;
 
 
 //action build for features
@@ -34,6 +35,16 @@ public abstract class JiraFeatureBuild {
         return webElement;
     }
 
+    protected boolean waitUntilElementTextFound(WebElement webElement) {
+        try {
+            webElement.isDisplayed();
+            return true;
+        } catch (Exception e) {
+            System.out.println("No Element Found!");
+            return false;
+        }
+    }
+
     protected void clickOnElement(WebElement webElement) {
         waitUntilElementClickable(webElement).click();
     }
@@ -44,6 +55,10 @@ public abstract class JiraFeatureBuild {
 
     public void quitDriver() {
         driver.quit();
+    }
+
+    public void navigateToURL(String URL) {
+        driver.get(URL);
     }
 
 }

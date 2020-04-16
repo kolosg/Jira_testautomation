@@ -1,13 +1,14 @@
 package com.kolosg.Jira.testautomation.utility;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.opera.OperaDriver;
-import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Random;
 
 public class Util {
@@ -17,24 +18,20 @@ public class Util {
     public final static String USERNAME = getEnvironmentVariable("jira_username");
     public final static String PASSWORD = getEnvironmentVariable("jira_password");
     public final static String BASE_URL = "https://jira.codecool.codecanvas.hu";
+    public static final String GRID_URL = System.getenv("grid_url");
+    public static final String BROWSER = System.getenv("browser");
 
     //method simply creates the given webdriver
-    public static WebDriver createDriver(String driverType) {
+    public static WebDriver createDriver(String driverType) throws MalformedURLException {
+        String fullGridUrl = GRID_URL.replace("{PASSWORD}", PASSWORD);
         WebDriver driver;
-        if(driverType.equalsIgnoreCase("Chrome")) {
-            driver = new ChromeDriver();
-        } else if (driverType.equalsIgnoreCase("Firefox")) {
-            driver = new FirefoxDriver();
-        } else if (driverType.equalsIgnoreCase("Safari")) {
-            driver = new SafariDriver();
-        } else if (driverType.equalsIgnoreCase("Opera")) {
-            driver = new OperaDriver();
-        } else if (driverType.equalsIgnoreCase("Edge")) {
-            driver = new EdgeDriver();
-        } else {
-            throw new IllegalArgumentException("No such driver!");
+        MutableCapabilities options = null;
+        if ("chrome".equals(BROWSER)) {
+            options = new ChromeOptions();
+        } else if ("firefox".equals(BROWSER)) {
+            options = new FirefoxOptions();
         }
-        return driver;
+        return driver = new RemoteWebDriver(new URL(fullGridUrl), options);
     }
 
     //method to get pre defined environment variables by key
@@ -56,6 +53,15 @@ public class Util {
 
     public static int generateRandomNumberInRange(int range) {
         return random.nextInt(range);
+    }
+
+    public static String getFirstWord(String text) {
+        int index = text.indexOf(' ');
+        if (index > -1) {
+            return text.substring(0, index).trim();
+        } else {
+            return text;
+        }
     }
 
     /*

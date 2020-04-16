@@ -1,96 +1,86 @@
 package com.kolosg.Jira.testautomation.features;
 
 import com.kolosg.Jira.testautomation.utility.Util;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import java.util.List;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 public class JiraCreateIssue extends JiraFeatureBuild{
     @FindBy(id = "create_link")
     WebElement createButton;
 
-    @FindBy(id = "project-field")
+    @FindBy(xpath = "//label[text()='Project']")
     WebElement projectField;
 
-    @FindBy(id = "issuetype-field")
+    @FindBy(xpath = "//label[text()='Issue Type']")
     WebElement issueTypeField;
 
-    @FindBy(id = "summary")
+    @FindBy(xpath = "//label[text()='Summary']")
     WebElement summaryField;
 
-    @FindBy(id = "create-issue-submit")
+    @FindBy(xpath = "//*[@id='create-issue-submit']")
     WebElement createIssueButton;
 
     @FindBy(xpath = "//a[@class='cancel']")
     WebElement cancelButton;
 
-    @FindBy(xpath = "//*[@id='aui-flag-container']/div/div")
-    WebElement conformationPopup;
+    @FindBy(xpath = "//*[@id='summary-val']")
+    WebElement conformationName;
 
-    @FindBy(xpath = "//span[@class='dropdown-text'][text()='More']")
+    @FindBy(xpath = "//*[@id='opsbar-operations_more']/span")
     WebElement moreButton;
 
     @FindBy(xpath = "//*[@id='delete-issue']/a")
     WebElement deleteButton;
 
+    @FindBy(xpath = "//*[@id='create-issue-dialog']")
+    WebElement createIssueScreen;
+
     @FindBy(xpath = "//*[@id='delete-issue-submit']")
     WebElement confirmDeleteButton;
-
-    @FindBy(xpath = "//*[@id='content']/div[1]/div[3]/div/div/div/div/div/div/div/div[1]/div[1]/div/div[1]/div[2]/div/ol/li")
-    List<WebElement> collectedIssues;
-
-    private final String searchForTestIssuesURL = Util.BASE_URL + "/issues/?jql=text%20~%20\"testSummaryVerificationMessage\"";
 
     public JiraCreateIssue(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
-    void selectFromDropdown(WebElement element, String select) {
-        try {
-            clickOnElement(element);
-            element.sendKeys(select + Keys.ENTER);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    void fillInSummaryField(String summaryMessage) {
-        waitUntilElementClickable(summaryField);
-        summaryField.sendKeys(summaryMessage);
+    private void selectFromDropdown(WebElement element, String name) {
+        waitUntilElementTextFound(element);
+        element.click();
+        driver.switchTo().activeElement().sendKeys(name + Keys.ENTER);
     }
 
     public void createNewIssue(String projectName, String issueName, String summary) {
         clickOnElement(createButton);
         selectFromDropdown(projectField, projectName);
         selectFromDropdown(issueTypeField, issueName);
-        fillInSummaryField(summary);
+        selectFromDropdown(summaryField, summary);
         clickOnElement(createIssueButton);
     }
 
     public boolean validateSuccessfulIssueCreation() {
         try {
-            waitUntilElementLoaded(conformationPopup);
+            wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.partialLinkText(" has been successfully created."))));
             return true;
         } catch (Exception e) {
             return false;
         }
     }
 
+    public String filteredURL(String testIssueName) {
+        System.out.println(Util.BASE_URL + "/issues/?jql=text%20~%20\"" + testIssueName + "\"");
+        return Util.BASE_URL + "/issues/?jql=text%20~%20\"" + testIssueName + "\"";
+    }
+
     public void clearUpTestIssues() {
-        Util.navigateToURL(driver, searchForTestIssuesURL);
-        for (WebElement issue : collectedIssues) {
-            clickOnElement(issue);
-            clickOnElement(moreButton);
-            clickOnElement(deleteButton);
-            clickOnElement(confirmDeleteButton);
+        clickOnElement(moreButton);
+        clickOnElement(deleteButton);
+        clickOnElement(confirmDeleteButton);
         }
 
     }
-
-}

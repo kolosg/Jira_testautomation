@@ -18,7 +18,6 @@ public class JiraPermissionWithGlassTest {
 
     private final String projectPermissionNames = "/project_permission_fields.csv";
 
-
     @BeforeEach
     void setUp() {
         login = new JiraLogin();
