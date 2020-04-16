@@ -19,7 +19,8 @@ public class JiraBrowseProjectsTest {
 
     @BeforeEach
     void setUp() throws MalformedURLException {
-        login = new JiraLogin(Util.createDriver(), "yes");
+        login = new JiraLogin(Util.createDriver());
+        login.setUpLogin();
         jiraBrowseProject = new JiraBrowseProject(login.getDriver());
     }
 
