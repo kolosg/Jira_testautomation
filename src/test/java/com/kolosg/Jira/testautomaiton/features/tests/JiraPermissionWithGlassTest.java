@@ -10,6 +10,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
+import java.net.MalformedURLException;
+
 public class JiraPermissionWithGlassTest {
 
     private JiraLogin login;
@@ -19,7 +21,7 @@ public class JiraPermissionWithGlassTest {
     private final String projectPermissionNames = "/project_permission_fields.csv";
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws MalformedURLException {
         login = new JiraLogin();
         jiraGlassDocumentation = new JiraGlassDocumentation(login.getDriver());
         jiraProjectPermissions = new JiraProjectPermissions(login.getDriver());

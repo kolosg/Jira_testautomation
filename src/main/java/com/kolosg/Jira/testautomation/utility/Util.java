@@ -22,7 +22,7 @@ public class Util {
     public static final String BROWSER = System.getenv("browser");
 
     //method simply creates the given webdriver
-    public static WebDriver createDriver(String driverType) throws MalformedURLException {
+    public static WebDriver createDriver() throws MalformedURLException {
         String fullGridUrl = GRID_URL.replace("{PASSWORD}", PASSWORD);
         WebDriver driver;
         MutableCapabilities options = null;

@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
+import java.net.MalformedURLException;
+
 public class JiraCreateIssueTest{
 
     private JiraLogin login;
@@ -16,7 +18,7 @@ public class JiraCreateIssueTest{
     private final String createIssueData = "/create_issue_combinations.csv";
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws MalformedURLException {
         login = new JiraLogin();
         createIssue = new JiraCreateIssue(login.getDriver());
     }

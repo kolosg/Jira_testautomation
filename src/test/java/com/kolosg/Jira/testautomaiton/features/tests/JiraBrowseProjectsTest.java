@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.net.MalformedURLException;
+
 import static com.kolosg.Jira.testautomation.utility.Util.BASE_URL;
 
 public class JiraBrowseProjectsTest {
@@ -16,7 +18,7 @@ public class JiraBrowseProjectsTest {
     private JiraBrowseProject jiraBrowseProject;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws MalformedURLException {
         login = new JiraLogin();
         jiraBrowseProject = new JiraBrowseProject(login.getDriver());
     }

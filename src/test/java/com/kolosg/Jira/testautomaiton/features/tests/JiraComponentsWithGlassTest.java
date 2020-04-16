@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.net.MalformedURLException;
 import java.util.List;
 
 public class JiraComponentsWithGlassTest {
@@ -17,7 +18,7 @@ public class JiraComponentsWithGlassTest {
     private JiraProjectComponents jiraProjectComponents;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws MalformedURLException {
         login = new JiraLogin();
         jiraGlassDocumentation = new JiraGlassDocumentation(login.getDriver());
         jiraProjectComponents = new JiraProjectComponents(login.getDriver());

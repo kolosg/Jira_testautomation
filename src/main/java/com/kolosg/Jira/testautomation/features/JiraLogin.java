@@ -29,7 +29,7 @@ public class JiraLogin extends JiraFeatureBuild{
     WebElement userProfilePicture;
 
     public JiraLogin() throws MalformedURLException {
-        super(Util.createDriver("Chrome"));
+        super(Util.createDriver());
         PageFactory.initElements(driver, this);
         setUpLogin();
     }
