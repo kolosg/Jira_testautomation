@@ -19,7 +19,7 @@ public class JiraLoginTest {
 
     @BeforeEach
     void setUp() {
-        login = new JiraLogin(Util.createDriver("Chrome"));
+        login = new JiraLogin(Util.createDriver());
     }
 
     @AfterEach
