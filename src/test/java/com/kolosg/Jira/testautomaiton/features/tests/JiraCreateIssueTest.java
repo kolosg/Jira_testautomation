@@ -19,7 +19,7 @@ public class JiraCreateIssueTest{
 
     @BeforeEach
     void setUp() throws MalformedURLException {
-        login = new JiraLogin("yes");
+        login = new JiraLogin(Util.createDriver(), "yes");
         createIssue = new JiraCreateIssue(login.getDriver());
     }
 

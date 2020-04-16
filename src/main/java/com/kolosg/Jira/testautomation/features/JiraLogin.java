@@ -28,8 +28,8 @@ public class JiraLogin extends JiraFeatureBuild{
     @FindBy(xpath = "//*[@id=\"header-details-user-fullname\"]//img")
     WebElement userProfilePicture;
 
-    public JiraLogin(String setupWithLogin) throws MalformedURLException {
-        super(Util.createDriver());
+    public JiraLogin(WebDriver driver, String setupWithLogin) throws MalformedURLException {
+        super(driver);
         PageFactory.initElements(driver, this);
         if (setupWithLogin != null) {
             setUpLogin();

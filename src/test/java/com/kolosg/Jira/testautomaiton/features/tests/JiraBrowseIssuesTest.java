@@ -2,6 +2,7 @@ package com.kolosg.Jira.testautomaiton.features.tests;
 
 import com.kolosg.Jira.testautomation.features.JiraBrowseIssues;
 import com.kolosg.Jira.testautomation.features.JiraLogin;
+import com.kolosg.Jira.testautomation.utility.Util;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +21,7 @@ public class JiraBrowseIssuesTest {
 
     @BeforeEach
     void setUp() throws MalformedURLException {
-        login = new JiraLogin("yes");
+        login = new JiraLogin(Util.createDriver(), "yes");
         jiraBrowseIssue = new JiraBrowseIssues(login.getDriver());
     }
 
