@@ -15,11 +15,11 @@ public class Util {
 
     private static Random random = new Random();
 
-    public final static String USERNAME = getEnvironmentVariable("jira_username");
-    public final static String PASSWORD = getEnvironmentVariable("jira_password");
+    public final static String USERNAME = System.getenv("jira_username");
+    public final static String PASSWORD = System.getenv("jira_password");
     public final static String BASE_URL = "https://jira.codecool.codecanvas.hu";
-    public static final String GRID_URL = getEnvironmentVariable("grid_url");
-    public static final String BROWSER = getEnvironmentVariable("browser");
+    public static final String GRID_URL = System.getenv("grid_url");
+    public static final String BROWSER = System.getenv("browser");
 
     //method simply creates the given webdriver
     public static WebDriver createDriver() throws MalformedURLException {
