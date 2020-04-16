@@ -15,8 +15,8 @@ public class Util {
 
     private static Random random = new Random();
 
-    public final static String USERNAME = System.getenv("jira_username");
-    public final static String PASSWORD = System.getenv("jira_password");
+    public final static String USERNAME = System.getenv("default_pw");
+    public final static String PASSWORD = System.getenv("default_username");
     public final static String BASE_URL = "https://jira.codecool.codecanvas.hu";
     public static final String GRID_URL = System.getenv("grid_url");
     public static final String BROWSER = System.getenv("browser");
