@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.MalformedURLException;
 import java.time.Duration;
 
 public abstract class BaseTest {
@@ -14,6 +15,7 @@ public abstract class BaseTest {
 
     @BeforeAll
     static void setUp() {
+
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 3000);
         driver.manage().window().maximize();

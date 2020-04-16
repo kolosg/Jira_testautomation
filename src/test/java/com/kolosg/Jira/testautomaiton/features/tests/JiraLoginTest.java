@@ -18,7 +18,7 @@ public class JiraLoginTest {
     private final String loginTestData = "/login_test_data.csv";
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws MalformedURLException {
         login = new JiraLogin(Util.createDriver());
     }
 
