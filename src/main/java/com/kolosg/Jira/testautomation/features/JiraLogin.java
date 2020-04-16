@@ -1,7 +1,6 @@
 package com.kolosg.Jira.testautomation.features;
 
 import com.kolosg.Jira.testautomation.utility.Util;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -28,14 +27,14 @@ public class JiraLogin extends JiraFeatureBuild{
     @FindBy(xpath = "//*[@id=\"header-details-user-fullname\"]//img")
     WebElement userProfilePicture;
 
-    public JiraLogin() throws MalformedURLException {
+    public JiraLogin(String s) throws MalformedURLException {
         super(Util.createDriver());
         PageFactory.initElements(driver, this);
         setUpLogin();
     }
 
-    public JiraLogin(WebDriver driver) throws MalformedURLException{
-        super(driver);
+    public JiraLogin() throws MalformedURLException {
+        super(Util.createDriver());
         PageFactory.initElements(driver, this);
     }
 
