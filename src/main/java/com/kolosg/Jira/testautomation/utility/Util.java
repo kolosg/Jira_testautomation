@@ -31,7 +31,8 @@ public class Util {
         } else if ("firefox".equals(BROWSER)) {
             options = new FirefoxOptions();
         }
-        return driver = new RemoteWebDriver(new URL(fullGridUrl), options);
+        driver = new RemoteWebDriver(new URL(fullGridUrl), options);
+        return driver;
     }
 
     //method to get pre defined environment variables by key
