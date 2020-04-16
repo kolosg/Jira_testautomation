@@ -17,19 +17,19 @@ public class EditIssue extends BasePOM{
     @FindBy(id = "edit-issue-submit")
     WebElement updateButton;
 
-    @FindBy(xpath = "//*[@id=\"summary-val\"]")
+    @FindBy(xpath = "//*[@id='summary-val']")
     WebElement editableNameField;
 
-    @FindBy(linkText = "cancel")
+    @FindBy(xpath = "//*[@id='edit-issue-dialog']//*[@class='cancel']")
     WebElement cancelLinkOnEditIssueModal;
 
-    @FindBy(xpath = "/html/body/div[6]")
+    @FindBy(xpath = "//*[@id='edit-issue-dialog']")
     WebElement editModal;
 
     @FindBy(className = "simple-issue-list")
     WebElement projectIssueList;
 
-    @FindBy(xpath = "/html/body/div/section/div[1]/div/div[1]/header/div/div[1]")
+    @FindBy(xpath = "//*[@class='projects-sidebar']//*[@class='jira-project-avatar']")
     WebElement projectImage;
 
 

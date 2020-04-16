@@ -6,9 +6,6 @@ import com.kolosg.Jira.testautomation.utility.Util;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebElement;
-
-import java.util.LinkedList;
 
 public class JiraIssueTypeWithGlassTest extends BaseTest{
     private JiraLogin login = new JiraLogin(driver);
@@ -32,8 +29,8 @@ public class JiraIssueTypeWithGlassTest extends BaseTest{
         issueTypesFromSummary = issueTypeWithGlass.removeDuplicatedWordsFromString(issueTypesFromSummary);
         issueTypesFromDocumentation = issueTypeWithGlass.removeDuplicatedWordsFromString(issueTypesFromDocumentation);
 
-        issueTypesFromSummary = issueTypeWithGlass.orderByAlphabeticcalyWordsInAString(issueTypesFromSummary);
-        issueTypesFromDocumentation = issueTypeWithGlass.orderByAlphabeticcalyWordsInAString(issueTypesFromDocumentation);
+        issueTypesFromSummary = issueTypeWithGlass.orderByAlphabeticalWordsInAString(issueTypesFromSummary);
+        issueTypesFromDocumentation = issueTypeWithGlass.orderByAlphabeticalWordsInAString(issueTypesFromDocumentation);
 
         Assertions.assertEquals(issueTypesFromSummary, issueTypesFromDocumentation);
     }

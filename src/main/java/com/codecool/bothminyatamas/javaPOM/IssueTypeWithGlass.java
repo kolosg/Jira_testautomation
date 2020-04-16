@@ -62,7 +62,7 @@ public class IssueTypeWithGlass extends BasePOM {
         return str;
     }
 
-    public String orderByAlphabeticcalyWordsInAString(String str){
+    public String orderByAlphabeticalWordsInAString(String str){
         String[] strWords = str.split("\\s+");
         List<String> al = new ArrayList<String>();
         al = Arrays.asList(strWords);

@@ -27,18 +27,15 @@ public class JiraEditIssuesTest extends BaseTest {
         login.waitForSuccessfulLogin();
     }
 
+
+
     @Test
     public void testToValidateIssueEditing() {
         Util.navigateToURL(driver,Util.BASE_URL + "/projects/MTP/issues/MTP-656");
         editIssue.editIssueName(originalSummaryName,true);
         editIssue.editIssueName(newSummaryName, true);
 
-        //go back to the main page
-        Util.navigateToURL(driver,Util.BASE_URL);
-        login.waitForSuccessfulLogin();
-
-        //go to the project page
-        Util.navigateToURL(driver,Util.BASE_URL + "/projects/MTP/issues/MTP-656");
+        driver.navigate().refresh();
         Assertions.assertEquals(newSummaryName ,editIssue.getIssueCurrentName());
         editIssue.editIssueName(originalSummaryName, true);
     }
