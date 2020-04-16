@@ -34,7 +34,7 @@ public class JiraLogin extends JiraFeatureBuild{
         setUpLogin();
     }
 
-    public JiraLogin(WebDriver driver) {
+    public JiraLogin(WebDriver driver) throws MalformedURLException{
         super(driver);
         PageFactory.initElements(driver, this);
     }
