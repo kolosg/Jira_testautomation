@@ -15,7 +15,6 @@ public abstract class JiraFeatureBuild {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
-    protected final String BASE_URL = Util.getEnvironmentVariable("base_url");
 
     public JiraFeatureBuild(WebDriver driver){
         this.driver = driver;
