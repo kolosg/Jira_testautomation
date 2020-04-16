@@ -22,7 +22,6 @@ public class JiraLoginTest {
         login = new JiraLogin(Util.createDriver());
     }
 
-
     @AfterEach
     void tearDown() {
         login.quitDriver();
