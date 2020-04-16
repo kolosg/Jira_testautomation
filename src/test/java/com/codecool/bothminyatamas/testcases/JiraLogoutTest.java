@@ -10,7 +10,7 @@ import java.net.MalformedURLException;
 
 public class JiraLogoutTest extends BaseTest{
     private Logout logout = new Logout(driver, wait);
-    private JiraLogin login = new JiraLogin();
+    private JiraLogin login = new JiraLogin(driver);
 
     public JiraLogoutTest() throws MalformedURLException {
     }
