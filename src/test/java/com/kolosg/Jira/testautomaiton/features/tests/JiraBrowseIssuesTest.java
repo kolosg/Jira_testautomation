@@ -20,7 +20,7 @@ public class JiraBrowseIssuesTest {
 
     @BeforeEach
     void setUp() throws MalformedURLException {
-        login = new JiraLogin();
+        login = new JiraLogin("s");
         jiraBrowseIssue = new JiraBrowseIssues(login.getDriver());
     }
 

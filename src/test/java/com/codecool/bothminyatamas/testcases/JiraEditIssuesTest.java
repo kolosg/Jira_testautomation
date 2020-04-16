@@ -14,7 +14,7 @@ import java.net.MalformedURLException;
 import java.time.Duration;
 
 public class JiraEditIssuesTest extends BaseTest {
-    private JiraLogin login = new JiraLogin(driver);
+    private JiraLogin login = new JiraLogin();
     private EditIssue editIssue = new EditIssue(wait, driver);
 
     private String newSummaryName = "New Summary name";

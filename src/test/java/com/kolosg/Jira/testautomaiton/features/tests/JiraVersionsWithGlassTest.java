@@ -20,7 +20,7 @@ public class JiraVersionsWithGlassTest {
 
     @BeforeEach
     void setUp() throws MalformedURLException {
-        login = new JiraLogin();
+        login = new JiraLogin("s");
         jiraGlassDocumentation = new JiraGlassDocumentation(login.getDriver());
         jiraProjectVersions = new JiraProjectVersions(login.getDriver());
     }

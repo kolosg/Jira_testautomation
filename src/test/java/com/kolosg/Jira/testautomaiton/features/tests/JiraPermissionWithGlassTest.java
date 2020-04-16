@@ -22,7 +22,7 @@ public class JiraPermissionWithGlassTest {
 
     @BeforeEach
     void setUp() throws MalformedURLException {
-        login = new JiraLogin();
+        login = new JiraLogin("e");
         jiraGlassDocumentation = new JiraGlassDocumentation(login.getDriver());
         jiraProjectPermissions = new JiraProjectPermissions(login.getDriver());
     }
