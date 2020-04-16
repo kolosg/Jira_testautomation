@@ -7,9 +7,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.net.MalformedURLException;
+
 public class JiraIssueTypeWithGlassTest extends BaseTest{
     private JiraLogin login = new JiraLogin(driver);
     private IssueTypeWithGlass issueTypeWithGlass = new IssueTypeWithGlass(wait,driver);
+
+    public JiraIssueTypeWithGlassTest() throws MalformedURLException {
+    }
 
     @BeforeEach
     void loginToJira(){

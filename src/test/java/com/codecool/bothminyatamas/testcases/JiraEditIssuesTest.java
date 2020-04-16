@@ -10,6 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.By;
 
+import java.net.MalformedURLException;
 import java.time.Duration;
 
 public class JiraEditIssuesTest extends BaseTest {
@@ -18,6 +19,9 @@ public class JiraEditIssuesTest extends BaseTest {
 
     private String newSummaryName = "New Summary name";
     private String originalSummaryName = "Original summary name";
+
+    public JiraEditIssuesTest() throws MalformedURLException {
+    }
 
     @BeforeEach
     void loginToJira(){

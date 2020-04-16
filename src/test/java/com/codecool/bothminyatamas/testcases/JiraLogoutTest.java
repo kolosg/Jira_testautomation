@@ -6,9 +6,14 @@ import com.kolosg.Jira.testautomation.utility.Util;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.net.MalformedURLException;
+
 public class JiraLogoutTest extends BaseTest{
     private Logout logout = new Logout(driver, wait);
     private JiraLogin login = new JiraLogin(driver);
+
+    public JiraLogoutTest() throws MalformedURLException {
+    }
 
     @Test
     void logoutHappyPassTest(){
