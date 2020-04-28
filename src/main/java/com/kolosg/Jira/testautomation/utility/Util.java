@@ -26,7 +26,7 @@ public class Util {
         MutableCapabilities options = null;
         if ("chrome".equals(BROWSER)) {
             options = new ChromeOptions();
-        } else if ("Firefox".equals(BROWSER)) {
+        } else if ("firefox".equals(BROWSER)) {
             options = new FirefoxOptions();
         }
         return new RemoteWebDriver(new URL(fullGridUrl), options);
