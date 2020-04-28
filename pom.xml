@@ -30,7 +30,7 @@
         </pluginManagement>
         <testResources>
             <testResource>
-                <directory>src/test/java/test_resources</directory>
+                <directory>src/test/java/resources</directory>
             </testResource>
         </testResources>
     </build>
