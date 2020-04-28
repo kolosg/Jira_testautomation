@@ -24,10 +24,9 @@ public class Util {
     public static RemoteWebDriver createDriver() throws MalformedURLException {
         String fullGridUrl = GRID_URL.replace("{PASSWORD}", SELENIUM_GRID_PASSWORD);
         MutableCapabilities options = null;
-        System.out.println(fullGridUrl);
-        if ("Chrome".equals(BROWSER)) {
+        if ("chrome".equals(BROWSER)) {
             options = new ChromeOptions();
-        } else if ("firefox".equals(BROWSER)) {
+        } else if ("Firefox".equals(BROWSER)) {
             options = new FirefoxOptions();
         }
         return new RemoteWebDriver(new URL(fullGridUrl), options);
