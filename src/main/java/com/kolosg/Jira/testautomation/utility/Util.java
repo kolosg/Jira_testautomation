@@ -15,11 +15,11 @@ public class Util {
 
     private static Random random = new Random();
 
-    public final static String USERNAME = System.getenv("default_pw");
-    public final static String PASSWORD = System.getenv("default_username");
+    public final static String USERNAME = System.getenv("DEFAULT_USERNAME");
+    public final static String PASSWORD = System.getenv("DEFAULT_PW");
     public final static String BASE_URL = "https://jira.codecool.codecanvas.hu";
-    public static final String GRID_URL = System.getenv("grid_url");
-    public static final String BROWSER = System.getenv("browser");
+    public static final String GRID_URL = System.getenv("GRID_URL");
+    public static final String BROWSER = System.getenv("BROWSER");
     private static WebDriver driver;
 
     //method simply creates the given webdriver
