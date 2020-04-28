@@ -1,6 +1,5 @@
 package com.kolosg.Jira.testautomation.utility;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -13,17 +12,15 @@ import java.util.Random;
 
 public class Util {
 
-    private static Random random = new Random();
+    private static final Random random = new Random();
 
     public final static String USERNAME = System.getenv("default_pw");
     public final static String PASSWORD = System.getenv("default_username");
     public final static String BASE_URL = "https://jira.codecool.codecanvas.hu";
-    public static final String GRID_URL = System.getenv("grid_url");
-    public static final String BROWSER = System.getenv("browser");
-    private static WebDriver driver;
+    public final static String GRID_URL = System.getenv("grid_url");
+    public final static String BROWSER = System.getenv("BROWSER");
 
-    //method simply creates the given webdriver
-    public static WebDriver createDriver() throws MalformedURLException {
+    public static RemoteWebDriver createDriver() throws MalformedURLException {
         String fullGridUrl = GRID_URL.replace("{PASSWORD}", PASSWORD);
         MutableCapabilities options = null;
         if ("chrome".equals(BROWSER)) {
@@ -31,47 +28,15 @@ public class Util {
         } else if ("firefox".equals(BROWSER)) {
             options = new FirefoxOptions();
         }
-        driver = new RemoteWebDriver(new URL(fullGridUrl), options);
-        return driver;
-    }
-
-    //method to get pre defined environment variables by key
-    public static String getEnvironmentVariable(String variableName) {
-        String variable = System.getProperty(variableName.toUpperCase());
-        if (variable == null) {
-            throw new IllegalArgumentException("Environment variable not found!");
-        }
-        return variable;
+        return new RemoteWebDriver(new URL(fullGridUrl), options);
     }
 
     public static void navigateToURL(WebDriver driver,  String URL) {
         driver.get(URL);
     }
 
-    public static void openNewTab(WebDriver driver) {
-        ((JavascriptExecutor)driver).executeScript("window.open()");
-    }
-
     public static int generateRandomNumberInRange(int range) {
         return random.nextInt(range);
     }
-
-    public static String getFirstWord(String text) {
-        int index = text.indexOf(' ');
-        if (index > -1) {
-            return text.substring(0, index).trim();
-        } else {
-            return text;
-        }
-    }
-
-    /*
-    //use this method in need to define the driver properties (driverpath + driverproperty)
-    public static void setDriverPath() {
-        String driverProperty = getEnvironmentVariable("driver_property");
-        String driverPath = getEnvironmentVariable("driver_path");
-        System.setProperty(driverProperty, driverPath);
-    }
-    */
 
 }
