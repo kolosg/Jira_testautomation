@@ -15,7 +15,6 @@ public abstract class BaseTest {
 
     @BeforeAll
     static void setUp() {
-
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 3000);
         driver.manage().window().maximize();

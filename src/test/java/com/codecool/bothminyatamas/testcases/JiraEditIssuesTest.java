@@ -25,6 +25,7 @@ public class JiraEditIssuesTest extends BaseTest {
 
     @BeforeEach
     void loginToJira(){
+        //comment
         driver.get(Util.BASE_URL);
         driver.manage().window().maximize();
         login.loginAttempt(Util.USERNAME, Util.PASSWORD);
