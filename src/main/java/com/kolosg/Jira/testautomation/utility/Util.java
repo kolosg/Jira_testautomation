@@ -17,13 +17,14 @@ public class Util {
     public final static String USERNAME = System.getenv("DEFAULT_USERNAME");
     public final static String PASSWORD = System.getenv("DEFAULT_PW");
     public final static String BASE_URL = "https://jira.codecool.codecanvas.hu";
-    public final static String GRID_URL = System.getenv("grid_url");
+    public final static String GRID_URL = System.getenv("GRID_URL");
     public final static String BROWSER = System.getenv("BROWSER");
 
     public static RemoteWebDriver createDriver() throws MalformedURLException {
         String fullGridUrl = GRID_URL.replace("{PASSWORD}", PASSWORD);
         MutableCapabilities options = null;
-        if ("chrome".equals(BROWSER)) {
+        System.out.println(fullGridUrl);
+        if ("Chrome".equals(BROWSER)) {
             options = new ChromeOptions();
         } else if ("firefox".equals(BROWSER)) {
             options = new FirefoxOptions();

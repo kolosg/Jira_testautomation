@@ -1,5 +1,6 @@
 package com.codecool.bothminyatamas.testcases;
 
+import com.kolosg.Jira.testautomation.utility.Util;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
@@ -14,8 +15,8 @@ public abstract class BaseTest {
     static WebDriverWait wait;
 
     @BeforeAll
-    static void setUp() {
-        driver = new ChromeDriver();
+    static void setUp() throws MalformedURLException {
+        driver = Util.createDriver();
         wait = new WebDriverWait(driver, 3000);
         driver.manage().window().maximize();
     }
