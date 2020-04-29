@@ -7,19 +7,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
-//import org.openqa.selenium.chrome.ChromeOptions;
-
-
-//action build for features
 public abstract class JiraFeatureBuild {
-
     protected WebDriver driver;
     protected WebDriverWait wait;
 
     public JiraFeatureBuild(WebDriver driver){
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 30);
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     protected WebElement waitUntilElementClickable(WebElement webElement) {
@@ -51,9 +46,4 @@ public abstract class JiraFeatureBuild {
     public void quitDriver() {
         driver.quit();
     }
-
-    public void navigateToURL(String URL) {
-        driver.get(URL);
-    }
-
 }

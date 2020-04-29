@@ -6,8 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.net.MalformedURLException;
-
 
 public class JiraLogin extends JiraFeatureBuild{
 
@@ -25,10 +23,10 @@ public class JiraLogin extends JiraFeatureBuild{
     @FindBy(xpath = "//*[@id='usernameerror']/p")
     private WebElement errorMessage;
 
-    @FindBy(xpath = "//*[@id=\"header-details-user-fullname\"]//img")
+    @FindBy(xpath = "//*[@id='header-details-user-fullname']//img")
     WebElement userProfilePicture;
 
-    public JiraLogin(WebDriver driver) throws MalformedURLException {
+    public JiraLogin(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }

@@ -34,7 +34,7 @@ public class JiraCreateIssueTest{
     void testSuccessfulIssueCreation(String projectName, String issueType) {
         String testIssueSummary = "testSummaryVerificationMessage:" + Util.generateRandomNumberInRange(100);
         createIssue.createNewIssue(projectName, issueType, testIssueSummary);
-        createIssue.navigateToURL(createIssue.filteredURL(testIssueSummary));
+        Util.navigateToURL(createIssue.getDriver(), createIssue.filteredURL(testIssueSummary));
         Assertions.assertTrue(createIssue.validateSuccessfulIssueCreation());
         createIssue.clearUpTestIssues();
     }

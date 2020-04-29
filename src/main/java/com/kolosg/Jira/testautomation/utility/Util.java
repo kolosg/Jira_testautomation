@@ -39,5 +39,4 @@ public class Util {
     public static int generateRandomNumberInRange(int range) {
         return random.nextInt(range);
     }
-
 }
