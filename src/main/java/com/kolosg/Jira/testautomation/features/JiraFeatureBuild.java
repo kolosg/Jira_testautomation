@@ -14,7 +14,7 @@ public abstract class JiraFeatureBuild {
     public JiraFeatureBuild(WebDriver driver){
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 30);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
     }
 
     protected WebElement waitUntilElementClickable(WebElement webElement) {

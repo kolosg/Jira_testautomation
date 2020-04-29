@@ -2,6 +2,7 @@ package com.kolosg.Jira.testautomation.utility;
 
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -38,5 +39,9 @@ public class Util {
 
     public static int generateRandomNumberInRange(int range) {
         return random.nextInt(range);
+    }
+
+    public static WebDriver createChromeDriverForLocalTesting() {
+        return new ChromeDriver();
     }
 }

@@ -42,15 +42,6 @@ public class JiraLogin extends JiraFeatureBuild{
         clickOnElement(loginButton);
     }
 
-    public void getCAPTCHA() {
-        loginAttempt(Util.USERNAME, "invalidPassword");
-        waitUntilElementLoaded(errorMessage);
-    }
-
-    public String getErrorMessage() {
-        return errorMessage.getText();
-    }
-
     public String getValidationURL() {
         return validationURL;
     }
@@ -65,11 +56,12 @@ public class JiraLogin extends JiraFeatureBuild{
         waitForSuccessfulLogin();
     }
 
-    /*
-    //another way to validate
-    public int getNumberOfGadgetsOfPageForValidation() {
-        waitForSEC(Integer.parseInt(Util.getEnvironmentVariable("waiting_seconds")));
-        return driver.findElements(By.id("gadget")).size();
-    }*/
+    public void getCAPTCHA() {
+        loginAttempt(Util.USERNAME, "invalidPassword");
+        waitUntilElementLoaded(errorMessage);
+    }
 
+    public String getErrorMessage() {
+        return errorMessage.getText();
+    }
 }
