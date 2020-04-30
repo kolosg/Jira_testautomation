@@ -11,13 +11,13 @@ public class JiraLogin extends JiraFeatureBuild{
 
     private final String validationURL = Util.BASE_URL + "/secure/Viewprofile.jspa";
 
-    @FindBy(id = "login-form-username")
+    @FindBy(xpath = "//input[@id='login-form-username']")
     private WebElement loginUsernameField;
 
-    @FindBy(id = "login-form-password")
+    @FindBy(xpath = "//input[@id='login-form-password']")
     private WebElement loginPasswordField;
 
-    @FindBy(id = "login")
+    @FindBy(xpath = "//input[@id='login-form-submit']")
     private WebElement loginButton;
 
     @FindBy(xpath = "//*[@id='usernameerror']/p")

@@ -24,6 +24,7 @@ public class JiraBrowseIssuesTest {
         login = new JiraLogin(Util.createDriver());
         login.setUpLogin();
         jiraBrowseIssue = new JiraBrowseIssues(login.getDriver());
+        Util.navigateToURL(login.getDriver(), Util.BASE_URL);
     }
 
     @AfterEach
