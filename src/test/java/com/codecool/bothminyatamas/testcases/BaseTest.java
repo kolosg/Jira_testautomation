@@ -15,6 +15,7 @@ public abstract class BaseTest {
     @BeforeAll
     static void setUp() throws MalformedURLException {
         driver = Util.createDriver();
+
         wait = new WebDriverWait(driver, 50);
         driver.manage().window().maximize();
     }

@@ -20,6 +20,7 @@ public class JiraLoginTest {
     @BeforeEach
     void setUp() throws MalformedURLException {
         login = new JiraLogin(Util.createDriver());
+        Util.navigateToURL(login.getDriver(),Util.BASE_URL);
     }
 
     @AfterEach

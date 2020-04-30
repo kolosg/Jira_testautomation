@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Logout extends BasePOM{
-    @FindBy(xpath = "//*[@id='header-details-user-fullname']/span/span/img")
+    @FindBy(xpath = "//*[@id='header-details-user-fullname']")
     WebElement profilePicture;
 
     @FindBy(xpath = "//*[@id='log_out']")
